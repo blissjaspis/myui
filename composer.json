@@ -1,0 +1,24 @@
+{
+    "name": "blissjaspis/myui",
+    "description": "Myui is a package for Laravel that provides a set of pre-built UI components and utilities to help you build modern and responsive web applications",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bliss Jaspis",
+            "email": "jaspis_zzt@ymail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2|^8.3|^8.4",
+        "illuminate/view": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Myui\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
