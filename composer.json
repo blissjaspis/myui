@@ -6,7 +6,8 @@
     "authors": [
         {
             "name": "Bliss Jaspis",
-            "email": "jaspis_zzt@ymail.com"
+            "email": "bliss@jaspis.me",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -16,7 +17,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Myui\\": "src/"
+            "BlissJaspis\\Myui\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BlissJaspis\\Myui\\MyuiServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
