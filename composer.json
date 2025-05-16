@@ -3,6 +3,7 @@
     "description": "Myui is a package for Laravel that provides a set of pre-built UI components and utilities to help you build modern and responsive web applications",
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/blissjaspis/myui",
     "authors": [
         {
             "name": "Bliss Jaspis",
