@@ -1,5 +1,6 @@
 {
     "name": "blissjaspis/myui",
+    "version": "1.0.0",
     "description": "Myui is a package for Laravel that provides a set of pre-built UI components and utilities to help you build modern and responsive web applications",
     "type": "library",
     "license": "MIT",
@@ -16,6 +17,10 @@
         "illuminate/view": "^11.0|^12.0",
         "illuminate/support": "^11.0|^12.0"
     },
+    "require-dev": {
+        "orchestra/testbench": "^10.6",
+        "phpunit/phpunit": "^10.0|^11.0"
+    },
     "autoload": {
         "psr-4": {
             "BlissJaspis\\Myui\\": "src/"
@@ -27,10 +32,36 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BlissJaspis\\Myui\\MyuiServiceProvider"
-            ]
+                "BlissJaspis\\Myui\\Providers\\MyuiServiceProvider"
+            ],
+            "aliases": {
+                "Myui": "BlissJaspis\\Myui\\Facades\\Myui"
+            }
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    }
 }
