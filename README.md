@@ -48,18 +48,6 @@ Myui supports two component syntaxes for maximum flexibility:
 </x-myui::card>
 ```
 
-#### 2. Dash Syntax (Backward Compatible)
-```blade
-<x-myui-card>
-    <x-myui-card-header>
-        <h3>Card Title</h3>
-    </x-myui-card-header>
-    <x-myui-card-content>
-        <x-myui-button variant="default">Click me!</x-myui-button>
-    </x-myui-card-content>
-</x-myui-card>
-```
-
 ### Basic Components
 
 #### Button
@@ -77,19 +65,6 @@ Myui supports two component syntaxes for maximum flexibility:
 <x-myui::button size="lg">Large Button</x-myui::button>
 ```
 
-**Dash Syntax:**
-```blade
-<x-myui-button variant="default">Default Button</x-myui-button>
-<x-myui-button variant="destructive">Destructive</x-myui-button>
-<x-myui-button variant="outline">Outline</x-myui-button>
-<x-myui-button variant="secondary">Secondary</x-myui-button>
-<x-myui-button variant="ghost">Ghost</x-myui-button>
-<x-myui-button variant="link">Link</x-myui-button>
-
-<x-myui-button size="sm">Small Button</x-myui-button>
-<x-myui-button size="lg">Large Button</x-myui-button>
-```
-
 #### Input
 
 **Namespace Syntax:**
@@ -97,13 +72,6 @@ Myui supports two component syntaxes for maximum flexibility:
 <x-myui::input type="text" placeholder="Enter your name" />
 <x-myui::input type="email" placeholder="Enter your email" />
 <x-myui::input type="password" placeholder="Enter your password" />
-```
-
-**Dash Syntax:**
-```blade
-<x-myui-input type="text" placeholder="Enter your name" />
-<x-myui-input type="email" placeholder="Enter your email" />
-<x-myui-input type="password" placeholder="Enter your password" />
 ```
 
 #### Card
@@ -119,19 +87,6 @@ Myui supports two component syntaxes for maximum flexibility:
         <p>This is the card content.</p>
     </x-myui::card-content>
 </x-myui::card>
-```
-
-**Dash Syntax:**
-```blade
-<x-myui-card>
-    <x-myui-card-header>
-        <h3>Card Title</h3>
-        <p>Card description</p>
-    </x-myui-card-header>
-    <x-myui-card-content>
-        <p>This is the card content.</p>
-    </x-myui-card-content>
-</x-myui-card>
 ```
 
 #### Alert
@@ -155,25 +110,6 @@ Myui supports two component syntaxes for maximum flexibility:
 </x-myui::alert>
 ```
 
-**Dash Syntax:**
-```blade
-<x-myui-alert>
-    <x-myui-icons-check class="w-4 h-4" />
-    <div>
-        <h4>Success!</h4>
-        <p>Your changes have been saved successfully.</p>
-    </div>
-</x-myui-alert>
-
-<x-myui-alert variant="destructive">
-    <x-myui-icons-x class="w-4 h-4" />
-    <div>
-        <h4>Error!</h4>
-        <p>Something went wrong. Please try again.</p>
-    </div>
-</x-myui-alert>
-```
-
 #### Badge
 
 **Namespace Syntax:**
@@ -184,14 +120,6 @@ Myui supports two component syntaxes for maximum flexibility:
 <x-myui::badge variant="outline">Outline</x-myui::badge>
 ```
 
-**Dash Syntax:**
-```blade
-<x-myui-badge>New</x-myui-badge>
-<x-myui-badge variant="secondary">Secondary</x-myui-badge>
-<x-myui-badge variant="destructive">Error</x-myui-badge>
-<x-myui-badge variant="outline">Outline</x-myui-badge>
-```
-
 #### Icons
 
 **Namespace Syntax:**
@@ -199,13 +127,6 @@ Myui supports two component syntaxes for maximum flexibility:
 <x-myui::icons.loading class="w-6 h-6 animate-spin" />
 <x-myui::icons.check class="w-4 h-4" />
 <x-myui::icons.x class="w-4 h-4" />
-```
-
-**Dash Syntax:**
-```blade
-<x-myui-icons-loading class="w-6 h-6 animate-spin" />
-<x-myui-icons-check class="w-4 h-4" />
-<x-myui-icons-x class="w-4 h-4" />
 ```
 
 ### Using the Facade
@@ -237,7 +158,7 @@ if (Myui::usingBootstrap()) {
 You can override component styles by passing custom classes:
 
 ```blade
-<x-myui-button class="custom-button-class">Custom Button</x-myui-button>
+<x-myui::button class="custom-button-class">Custom Button</x-myui::button>
 ```
 
 ## Component Variants
