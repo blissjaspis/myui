@@ -26,7 +26,7 @@ class MyuiServiceProvider extends ServiceProvider
     public function boot()
     {
         // Load views from the package
-        $this->loadViewsFrom(__DIR__.'/../Views', $this->app->config['myui.prefix']);
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', $this->app->config['myui.prefix']);
 
         $this->bootPublishing();
     }

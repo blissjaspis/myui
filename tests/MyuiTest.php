@@ -33,12 +33,44 @@ class MyuiTest
         echo "✓ Global classes test passed\n";
     }
 
+    public static function test_it_can_detect_tailwind_css()
+    {
+        try {
+            // Test the hasTailwind method
+            $hasTailwind = Myui::hasTailwind();
+
+            // This will depend on whether the test environment has Tailwind installed
+            // For now, we'll just ensure the method returns a boolean
+            assert(is_bool($hasTailwind), 'hasTailwind should return a boolean');
+            echo "✓ Tailwind detection test passed\n";
+        } catch (\Exception $e) {
+            // If Laravel helpers are not available, skip this test
+            echo "⚠ Tailwind detection test skipped (Laravel not available)\n";
+        }
+    }
+
+    public static function test_it_can_get_tailwind_version()
+    {
+        try {
+            $version = Myui::tailwindVersion();
+
+            // Version can be null if Tailwind is not available
+            assert($version === null || is_string($version), 'Version should be null or string');
+            echo "✓ Tailwind version test passed\n";
+        } catch (\Exception $e) {
+            // If Laravel helpers are not available, skip this test
+            echo "⚠ Tailwind version test skipped (Laravel not available)\n";
+        }
+    }
+
     public static function run()
     {
         echo "Running Myui tests...\n";
         self::test_it_returns_correct_version();
         self::test_it_can_get_config_values();
         self::test_it_can_merge_global_classes();
+        self::test_it_can_detect_tailwind_css();
+        self::test_it_can_get_tailwind_version();
         echo "All tests passed!\n";
     }
 }

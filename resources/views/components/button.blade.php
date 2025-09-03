@@ -28,6 +28,6 @@
     $classes = trim("$baseClasses $variantClasses $sizeClasses");
 @endphp
 
-<button {{ $attributes->merge(['class' => $classes]) }}>
+<button {{ $attributes->merge(['class' => Myui::globalClassesToString() . ' ' . $classes]) }}>
     {{ $slot }}
 </button>

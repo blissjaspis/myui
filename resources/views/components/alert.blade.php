@@ -11,6 +11,6 @@
     $classes = trim("$baseClasses $variantClasses");
 @endphp
 
-<div {{ $attributes->merge(['class' => $classes]) }}>
+<div {{ $attributes->merge(['class' => Myui::globalClassesToString() . ' ' . $classes]) }}>
     {{ $slot }}
 </div>

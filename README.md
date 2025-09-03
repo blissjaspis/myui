@@ -16,17 +16,28 @@ After installation, you can optionally publish the configuration file:
 php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=config
 ```
 
+For your application to use the Myui components, you must add the following line to your `tailwind.config.js` file:
+
+```js
+module.exports = {
+    content: [
+        // ... your existing paths
+        "./vendor/blissjaspis/myui/resources/views/**/*.blade.php",
+    ],
+};
+```
+
 ## Configuration
 
 You can customize the package behavior by modifying the `config/myui.php` file:
 
 ```php
 return [
-    'framework' => 'tailwind', // or 'bootstrap'
-    'prefix' => 'myui',
-    'global_classes' => [],
-    'component_paths' => [],
-    'publish_assets' => true,
+    'framework' => 'tailwind', // CSS framework: 'tailwind' or 'bootstrap'
+    'prefix' => 'myui', // Component prefix for Blade templates
+    'global_classes' => [], // Global CSS classes applied to all components
+    'component_paths' => [], // Additional paths for custom components
+    'publish_assets' => true, // Whether to publish CSS/JS assets
 ];
 ```
 
@@ -55,6 +66,90 @@ use BlissJaspis\Myui\Facades\Myui;
 
 $prefix = Myui::prefix(); // Returns 'myui' or your custom prefix
 ```
+
+### Global Classes
+
+Apply CSS classes to all Myui components globally. This is useful for consistent theming across your application:
+
+```php
+'global_classes' => ['font-medium', 'text-gray-900'],
+```
+
+**Usage:**
+```blade
+<!-- This button will have both global and component-specific classes -->
+<x-myui::button class="bg-blue-500">Button</x-myui::button>
+<!-- Result: class="font-medium text-gray-900 bg-blue-500" -->
+```
+
+**Important:** Make sure your global classes are already defined in your project's CSS file. Otherwise, they will not be applied to the components. You have two options:
+
+#### Option 1: Add Global Classes to Your CSS
+Add your global classes directly to your main CSS file:
+
+```css
+/* resources/css/app.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your global classes for Myui */
+.font-medium { font-weight: 500; }
+.text-gray-900 { color: #111827; }
+```
+
+#### Option 2: Include Myui Config in Tailwind Config
+Add your `config/myui.php` file to your `tailwind.config.js` content paths so Tailwind can detect and include your global classes:
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./resources/**/*.blade.php",
+    "./resources/**/*.js",
+    "./resources/**/*.vue",
+    "./vendor/blissjaspis/myui/config/myui.php", // ✅ Include Myui config
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+**Note:** Myui does not automatically detect your global classes. You need to either:
+- Add your global classes directly to your CSS file, OR
+- Include your `config/myui.php` in your Tailwind config's content paths
+
+**Programmatic access:**
+```php
+use BlissJaspis\Myui\Facades\Myui;
+
+// Get global classes
+$globalClasses = Myui::globalClasses(); // Returns array
+
+// Merge global classes with component classes
+$allClasses = Myui::mergeClasses(['bg-blue-500', 'text-white']);
+
+// Merge global classes with component classes to string
+$allClasses = Myui::mergeClassesToString(['bg-blue-500', 'text-white']);
+```
+
+### Custom Component Paths
+
+Add additional directories where Myui should look for custom component templates:
+
+```php
+'component_paths' => [
+    resource_path('views/vendor/myui'),
+    app_path('View/Components'),
+],
+```
+
+This allows you to:
+- Override built-in components
+- Add completely custom components
+- Organize components in your preferred directory structure
 
 ## Usage
 
@@ -169,14 +264,12 @@ $version = Myui::version();
 $framework = Myui::framework();
 $prefix = Myui::prefix();
 
-// Check framework
-if (Myui::usingTailwind()) {
-    // Using Tailwind CSS
-}
+// Get global classes and component paths
+$globalClasses = Myui::globalClasses();
+$componentPaths = Myui::config('component_paths', []);
 
-if (Myui::usingBootstrap()) {
-    // Using Bootstrap
-}
+// Merge global classes with component classes
+$allClasses = Myui::mergeClasses(['bg-blue-500', 'text-white']);
 ```
 
 ### Custom Styling
