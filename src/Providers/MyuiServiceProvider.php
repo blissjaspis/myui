@@ -26,38 +26,12 @@ class MyuiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->loadViewsFrom(__DIR__.'/../../Views', 'myui');
-
-        // Register component namespace for myui:: syntax
-        Blade::componentNamespace('BlissJaspis\Myui\App\View\Components', 'myui');
-
-        // Register individual components for backward compatibility
-        $this->registerComponents();
+        // Load views from the package
+        $this->loadViewsFrom(__DIR__.'/../Views', 'myui');
 
         $this->bootPublishing();
     }
 
-    /**
-     * Register individual components for backward compatibility.
-     */
-    private function registerComponents()
-    {
-        $components = [
-            'button' => \BlissJaspis\Myui\App\View\Components\Button::class,
-            'input' => \BlissJaspis\Myui\App\View\Components\Input::class,
-            'card' => \BlissJaspis\Myui\App\View\Components\Card::class,
-            'card-header' => \BlissJaspis\Myui\App\View\Components\CardHeader::class,
-            'card-content' => \BlissJaspis\Myui\App\View\Components\CardContent::class,
-            'alert' => \BlissJaspis\Myui\App\View\Components\Alert::class,
-            'badge' => \BlissJaspis\Myui\App\View\Components\Badge::class,
-        ];
-
-        foreach ($components as $alias => $component) {
-            if (class_exists($component)) {
-                Blade::component($component, 'myui-' . $alias);
-            }
-        }
-    }
 
     /**
      * Boot the publishing.

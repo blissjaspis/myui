@@ -11,7 +11,8 @@ class WorkbenchServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Register our Myui package
+        $this->app->register(\BlissJaspis\Myui\Providers\MyuiServiceProvider::class);
     }
 
     /**

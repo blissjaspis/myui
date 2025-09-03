@@ -26,11 +26,11 @@ class MyuiServiceProviderTest
     public static function test_component_classes_exist()
     {
         $components = [
-            'BlissJaspis\Myui\App\View\Components\Button',
-            'BlissJaspis\Myui\App\View\Components\Input',
-            'BlissJaspis\Myui\App\View\Components\Card',
-            'BlissJaspis\Myui\App\View\Components\Alert',
-            'BlissJaspis\Myui\App\View\Components\Badge',
+            'BlissJaspis\Myui\Views\Components\Button',
+            'BlissJaspis\Myui\Views\Components\Input',
+            'BlissJaspis\Myui\Views\Components\Card',
+            'BlissJaspis\Myui\Views\Components\Alert',
+            'BlissJaspis\Myui\Views\Components\Badge',
         ];
 
         foreach ($components as $component) {
