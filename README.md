@@ -30,6 +30,32 @@ return [
 ];
 ```
 
+### Customizing the Component Prefix
+
+You can customize the component prefix to avoid conflicts with other packages or to match your project's naming conventions. The default prefix is `myui`, but you can change it in the configuration:
+
+```php
+'prefix' => 'myui', // Change this to your preferred prefix
+```
+
+**Example with custom prefix:**
+```php
+'prefix' => 'ui', // Now use <x-ui::button> instead of <x-myui::button>
+```
+
+After changing the prefix, you'll need to:
+1. Clear the view cache: `php artisan view:clear`
+2. Update your Blade templates to use the new prefix
+3. Optionally, republish the views if you want to customize them
+
+You can also access the current prefix programmatically:
+
+```php
+use BlissJaspis\Myui\Facades\Myui;
+
+$prefix = Myui::prefix(); // Returns 'myui' or your custom prefix
+```
+
 ## Usage
 
 ### Component Syntax
@@ -236,7 +262,6 @@ php artisan view:cache-status
 
 Myui components support all Laravel caching features:
 - ✅ Anonymous components (Blade-only)
-- ✅ Class-based components
 - ✅ Component props and attributes
 - ✅ Dynamic component rendering
 - ✅ View fragments and caching
