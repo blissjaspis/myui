@@ -121,6 +121,8 @@ module.exports = {
 - Add your global classes directly to your CSS file, OR
 - Include your `config/myui.php` in your Tailwind config's content paths
 
+**Exception:** If you're using Tailwind CSS via CDN, you can skip this step entirely. The CDN version includes all standard Tailwind utility classes by default, so custom global classes configuration is not required.
+
 **Programmatic access:**
 ```php
 use BlissJaspis\Myui\Facades\Myui;
