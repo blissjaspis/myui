@@ -16,7 +16,9 @@ After installation, you can optionally publish the configuration file:
 php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=config
 ```
 
-For your application to use the Myui components, you must add the following line to your `tailwind.config.js` file:
+For your application to use the Myui components, you must configure Tailwind CSS to scan the package's views.
+
+**Tailwind CSS v3 (`tailwind.config.js`):**
 
 ```js
 module.exports = {
@@ -25,6 +27,12 @@ module.exports = {
         "./vendor/blissjaspis/myui/resources/views/**/*.blade.php",
     ],
 };
+```
+
+**Tailwind CSS v4 (CSS file):**
+
+```css
+@source "./vendor/blissjaspis/myui/resources/views/**/*.blade.php";
 ```
 
 ## Usage
