@@ -13,7 +13,7 @@ Displays rich content in a portal, triggered by a button.
 ```blade
 <x-myui::popover>
     <x-myui::popover.trigger>
-        <x-myui::button variant="outline">Open Popover</x-myui::button>
+        Open Popover
     </x-myui::popover.trigger>
     
     <x-myui::popover.content>
