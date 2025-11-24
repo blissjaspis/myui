@@ -17,13 +17,14 @@ A menu that is displayed to the user when triggered, usually by clicking a butto
 |------|------|---------|-------------|
 | `align` | string | `'left'` | Alignment of the dropdown. Options: `'left'`, `'right'`, `'top'`. |
 | `width` | string | `'w-48'` | The width of the dropdown menu. |
+| `offset` | string | `'2'` | The offset of the dropdown menu. |
 
 ## Usage Example
 
 ```blade
 <x-myui::dropdown>
     <x-myui::dropdown.trigger>
-        <x-myui::button variant="outline">Open Menu</x-myui::button>
+        Open Menu
     </x-myui::dropdown.trigger>
     
     <x-myui::dropdown.content align="right">

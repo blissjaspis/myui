@@ -16,18 +16,9 @@ A control that allows the user to toggle between checked and unchecked states.
 
 ## Usage Example
 
-### Basic Checkbox
+### Livewire Usage
 
-```blade
-<div class="flex items-center space-x-2">
-    <x-myui::checkbox.button id="terms" />
-    <label for="terms" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-        Accept terms and conditions
-    </label>
-</div>
-```
-
-### With Livewire
+This component is designed to work seamlessly with Livewire for state management.
 
 ```blade
 <x-myui::checkbox model="isAdmin">

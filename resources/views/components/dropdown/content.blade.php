@@ -2,7 +2,7 @@
     Dropdown Content Component
     Documentation: docs/components/dropdown.md
 --}}
-@props(['align' => 'left', 'width' => 'w-48', 'offset' => '8'])
+@props(['align' => 'left', 'width' => 'w-48', 'offset' => '2'])
 
 @php
     $alignmentClasses = match ($align) {

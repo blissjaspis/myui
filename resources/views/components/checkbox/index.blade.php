@@ -2,7 +2,7 @@
     Checkbox Component
     Documentation: docs/components/checkbox.md
 --}}
-@props(['variant' => 'single', 'model' => ''])
+@props(['variant' => 'single', 'model' => null])
 
 @php
     $class = match ($variant) {
@@ -11,6 +11,12 @@
     }
 @endphp
 
-<div x-data="{check: $wire.entangle('{{ $model }}') ? true : false, handleClick(){this.check = ! this.check; $wire.handleCheckbox();}}" {{ $attributes->merge(['class' => $class]) }}>
+<div
+    x-data="{
+        check: @if($model) @entangle($model) @else false @endif,
+        toggle() { this.check = !this.check; }
+    }"
+    {{ $attributes->merge(['class' => $class]) }}
+>
     {{ $slot }}
 </div>
