@@ -1,0 +1,1 @@
+<x-myui::input {{ $attributes->merge() }} />

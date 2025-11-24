@@ -1,0 +1,1 @@
+<div class="text-sm [&amp;_p]:leading-relaxed">{{ $slot }}</div>
