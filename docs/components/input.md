@@ -19,7 +19,7 @@ All standard HTML input attributes are supported.
 ```blade
 <x-myui::input.group>
     <x-myui::input.group-icon>
-        <x-myui::icon name="mail" />
+        <x-myui::icons.envelope />
     </x-myui::input.group-icon>
     <x-myui::input type="email" placeholder="Email address" />
 </x-myui::input.group>

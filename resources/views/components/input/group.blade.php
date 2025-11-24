@@ -1,3 +1,3 @@
-<div {{ $attributes->merge(['class' => 'relative']) }}>
+<div {{ $attributes->merge(['class' => 'relative group']) }}>
     {{ $slot }}
 </div>

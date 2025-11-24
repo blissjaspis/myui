@@ -1,4 +1,4 @@
-@props(['align' => 'left', 'top' => 'top-3'])
+@props(['align' => 'left', 'top' => 'top-2'])
 
 @php
     $align = match ($align) {
@@ -7,6 +7,6 @@
     };
 @endphp
 
-<div class="absolute flex {{ $top }} size-4 text-muted-foreground {{ $align }}" {{ $attributes->merge(['class' => '']) }}>
+<div data-slot="icon" class="absolute flex {{ $top }} size-4 text-muted-foreground {{ $align }}" {{ $attributes->merge(['class' => '']) }}>
     {{ $slot }}
 </div>
