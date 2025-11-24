@@ -14,23 +14,23 @@ A badge component to display status, labels, or tags.
 ### Default Badge
 
 ```blade
-<x-myui-badge>
+<x-myui::badge>
     New
-</x-myui-badge>
+</x-myui::badge>
 ```
 
 ### Variants
 
 ```blade
-<x-myui-badge variant="secondary">Secondary</x-myui-badge>
-<x-myui-badge variant="destructive">Error</x-myui-badge>
-<x-myui-badge variant="outline">Outline</x-myui-badge>
+<x-myui::badge variant="secondary">Secondary</x-myui::badge>
+<x-myui::badge variant="destructive">Error</x-myui::badge>
+<x-myui::badge variant="outline">Outline</x-myui::badge>
 ```
 
 ### Sizes
 
 ```blade
-<x-myui-badge>Default</x-myui-badge>
-<x-myui-badge size="lg">Large</x-myui-badge>
+<x-myui::badge>Default</x-myui::badge>
+<x-myui::badge size="lg">Large</x-myui::badge>
 ```
 

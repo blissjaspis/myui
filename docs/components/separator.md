@@ -15,7 +15,7 @@ A visual separator component to divide content, supporting horizontal and vertic
 ### Horizontal Separator
 
 ```blade
-<x-myui-separator />
+<x-myui::separator />
 ```
 
 ### Vertical Separator
@@ -23,9 +23,9 @@ A visual separator component to divide content, supporting horizontal and vertic
 ```blade
 <div class="flex h-5 items-center space-x-4 text-sm">
     <div>Blog</div>
-    <x-myui-separator orientation="vertical" />
+    <x-myui::separator orientation="vertical" />
     <div>Docs</div>
-    <x-myui-separator orientation="vertical" />
+    <x-myui::separator orientation="vertical" />
     <div>Source</div>
 </div>
 ```
@@ -33,6 +33,6 @@ A visual separator component to divide content, supporting horizontal and vertic
 ### Separator with Text
 
 ```blade
-<x-myui-separator variant="text" text="OR" />
+<x-myui::separator variant="text" text="OR" />
 ```
 

@@ -15,7 +15,7 @@ A customizable textarea component with auto-resize functionality.
 ### Auto-resizing Textarea (Default)
 
 ```blade
-<x-myui-textarea 
+<x-myui::textarea 
     name="description" 
     placeholder="Enter your description here..." 
 />
@@ -24,7 +24,7 @@ A customizable textarea component with auto-resize functionality.
 ### Standard Textarea
 
 ```blade
-<x-myui-textarea 
+<x-myui::textarea 
     type="default"
     name="comments" 
     rows="5"

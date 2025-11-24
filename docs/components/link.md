@@ -13,24 +13,24 @@ A styled anchor tag component for navigation links.
 ### Default Link
 
 ```blade
-<x-myui-link href="/home">
+<x-myui::link href="/home">
     Go Home
-</x-myui-link>
+</x-myui::link>
 ```
 
 ### Colored Links
 
 ```blade
-<x-myui-link href="/delete" color="red">
+<x-myui::link href="/delete" color="red">
     Delete Account
-</x-myui-link>
+</x-myui::link>
 
-<x-myui-link href="/profile" color="blue">
+<x-myui::link href="/profile" color="blue">
     View Profile
-</x-myui-link>
+</x-myui::link>
 
-<x-myui-link href="/settings" color="black">
+<x-myui::link href="/settings" color="black">
     Settings
-</x-myui-link>
+</x-myui::link>
 ```
 
