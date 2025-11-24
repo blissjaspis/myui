@@ -35,6 +35,30 @@ module.exports = {
 @source "./vendor/blissjaspis/myui/resources/views/**/*.blade.php";
 ```
 
+## Optimization (Tree Shaking)
+
+By default, the configuration above scans all Myui components. To optimize your CSS size by only including the styles for the components you actually use, you can specify the specific directories for those components instead of scanning the entire package.
+
+**Tailwind CSS v3:**
+
+```js
+module.exports = {
+    content: [
+        // Scan specific components only
+        "./vendor/blissjaspis/myui/resources/views/components/button/**/*.blade.php",
+        "./vendor/blissjaspis/myui/resources/views/components/card/**/*.blade.php",
+        // ...
+    ],
+};
+```
+
+**Tailwind CSS v4:**
+
+```css
+@source "./vendor/blissjaspis/myui/resources/views/components/button/**/*.blade.php";
+@source "./vendor/blissjaspis/myui/resources/views/components/card/**/*.blade.php";
+```
+
 ## Usage
 
 ### Component Syntax
