@@ -2,6 +2,6 @@
     Form Component
     Documentation: docs/components/form.md
 --}}
-<div class="space-y-2" {{ $attributes->merge() }}>
+<div {{ $attributes->merge(['class' => 'space-y-2']) }}>
     {{ $slot }}
 </div>
