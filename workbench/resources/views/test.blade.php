@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Myui Components Test</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['workbench/resources/css/app.css'])
 </head>
 <body class="bg-gray-100 p-8">
     <div class="max-w-4xl mx-auto space-y-8">
@@ -44,7 +44,7 @@
         </section>
 
         <!-- Card Component -->
-        <section class="bg-white p-6 rounded-lg shadow">
+        {{-- <section class="bg-white p-6 rounded-lg shadow">
             <h2 class="text-xl font-semibold mb-4">Card Component</h2>
             <x-myui::card>
                 <x-myui::card-header>
@@ -58,7 +58,7 @@
                     </div>
                 </x-myui::card-content>
             </x-myui::card>
-        </section>
+        </section> --}}
 
         <!-- Alert Components -->
         <section class="bg-white p-6 rounded-lg shadow">

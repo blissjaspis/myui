@@ -1,4 +1,5 @@
 composer.lock
+package-lock.json
 vendor
 phpunit.xml
 .phpunit.result.cache
@@ -10,3 +11,11 @@ phpunit.xml
 .vscode
 .editorconfig
 .DS_Store
+node_modules
+/public/build
+/public/hot
+/npm-debug.log
+/yarn-error.log
+/testbench.yaml.example
+/workbench/public
+/workbench/storage

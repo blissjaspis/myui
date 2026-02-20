@@ -16,6 +16,12 @@ After installation, you can optionally publish the configuration file:
 php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=config
 ```
 
+Publish Myui CSS assets (recommended):
+
+```bash
+php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=myui-assets
+```
+
 For your application to use the Myui components, you must configure Tailwind CSS to scan the package's views.
 
 **Tailwind CSS v3 (`tailwind.config.js`):**
@@ -34,6 +40,29 @@ module.exports = {
 ```css
 @source "./vendor/blissjaspis/myui/resources/views/**/*.blade.php";
 ```
+
+### Include Myui theme tokens and base styles
+
+Myui components use shadcn-style theme tokens such as `bg-background`, `text-foreground`, `border-input`, and `ring-ring`.
+In addition to Tailwind scanning, publish assets and import the published stylesheet in your app CSS:
+
+```css
+@import "tailwindcss";
+@import "./vendor/myui.css";
+```
+
+If your app already has its own global design tokens, you can scope Myui styles by wrapping your UI in:
+
+```html
+<div class="myui-theme">
+    <!-- Myui components -->
+</div>
+```
+
+For dark mode, use one of these:
+
+- Global dark mode: add `.dark` on `<html>` or `<body>`.
+- Scoped dark mode: add `.dark` to the wrapper (`<div class="myui-theme dark">`) or place wrapper inside a dark parent (`<div class="dark"><div class="myui-theme">...</div></div>`).
 
 ## Optimization (Tree Shaking)
 
@@ -118,7 +147,6 @@ return [
     'prefix' => 'myui', // Component prefix for Blade templates
     'global_classes' => [], // Global CSS classes applied to all components
     'component_paths' => [], // Additional paths for custom components
-    'publish_assets' => true, // Whether to publish CSS/JS assets
 ];
 ```
 

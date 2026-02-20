@@ -41,6 +41,10 @@ class MyuiServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../../config/myui.php' => $this->app->configPath('myui.php'),
             ], 'config');
+
+            $this->publishes([
+                __DIR__.'/../../resources/css/myui.css' => resource_path('css/vendor/myui.css'),
+            ], 'myui-assets');
         }
     }
 }
