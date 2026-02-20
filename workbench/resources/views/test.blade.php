@@ -99,11 +99,146 @@
 
         <!-- Input Components -->
         <section class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Input Components</h2>
-            <div class="space-y-4">
-                <x-myui::input type="text" placeholder="Enter your name" />
-                <x-myui::input type="email" placeholder="Enter your email" />
-                <x-myui::input type="password" placeholder="Enter your password" />
+            <h2 class="text-xl font-semibold mb-6">Input Components</h2>
+
+            <!-- Basic Input -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Basic Input</h3>
+                <x-myui::form.input placeholder="Enter your text..." />
+            </div>
+
+            <!-- Field -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Field</h3>
+                <x-myui::form.field>
+                    <x-myui::form.field-label>Username</x-myui::form.field-label>
+                    <x-myui::form.input placeholder="Choose a unique username" />
+                    <x-myui::form.field-description>
+                        Choose a unique username for your account.
+                    </x-myui::form.field-description>
+                </x-myui::form.field>
+            </div>
+
+            <!-- Field Group -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Field Group</h3>
+                <x-myui::form.field-group>
+                    <x-myui::form.field>
+                        <x-myui::form.field-label>Name</x-myui::form.field-label>
+                        <x-myui::form.input placeholder="Enter your name" />
+                    </x-myui::form.field>
+                    <x-myui::form.field>
+                        <x-myui::form.field-label>Email</x-myui::form.field-label>
+                        <x-myui::form.input type="email" placeholder="Enter your email" />
+                        <x-myui::form.field-description>
+                            We'll send updates to this address.
+                        </x-myui::form.field-description>
+                    </x-myui::form.field>
+                </x-myui::form.field-group>
+                <div class="flex gap-2 mt-4">
+                    <x-myui::button variant="outline">Reset</x-myui::button>
+                    <x-myui::button>Submit</x-myui::button>
+                </div>
+            </div>
+
+            <!-- States -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">States</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Disabled -->
+                    <x-myui::form.field>
+                        <x-myui::form.field-label>Email</x-myui::form.field-label>
+                        <x-myui::form.input disabled placeholder="Disabled input" />
+                        <x-myui::form.field-description>
+                            This field is currently disabled.
+                        </x-myui::form.field-description>
+                    </x-myui::form.field>
+
+                    <!-- Invalid -->
+                    <x-myui::form.field invalid="true">
+                        <x-myui::form.field-label>Invalid Input</x-myui::form.field-label>
+                        <x-myui::form.input data-invalid="true" placeholder="Invalid input" />
+                        <x-myui::form.field-description>
+                            This field contains validation errors.
+                        </x-myui::form.field-description>
+                    </x-myui::form.field>
+                </div>
+            </div>
+
+            <!-- File Input -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">File Input</h3>
+                <x-myui::form.field>
+                    <x-myui::form.field-label>Picture</x-myui::form.field-label>
+                    <x-myui::form.input type="file" />
+                    <x-myui::form.field-description>
+                        Select a picture to upload.
+                    </x-myui::form.field-description>
+                </x-myui::form.field>
+            </div>
+
+            <!-- Required Field -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Required Field</h3>
+                <x-myui::form.field>
+                    <x-myui::form.field-label required>Required Field</x-myui::form.field-label>
+                    <x-myui::form.input required placeholder="This field is required" />
+                    <x-myui::form.field-description>
+                        This field must be filled out.
+                    </x-myui::form.field-description>
+                </x-myui::form.field>
+            </div>
+
+            <!-- Badge in Label -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Badge in Label</h3>
+                <x-myui::form.field>
+                    <x-myui::form.field-label>
+                        Webhook URL
+                        <x-myui::badge class="ml-2">Beta</x-myui::badge>
+                    </x-myui::form.field-label>
+                    <x-myui::form.input placeholder="https://example.com/webhook" />
+                </x-myui::form.field>
+            </div>
+
+            <!-- Input Group -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Input Group</h3>
+                <x-myui::form.field>
+                    <x-myui::form.field-label>Website URL</x-myui::form.field-label>
+                    <x-myui::form.input-group>
+                        <x-myui::form.input-group-icon>https://</x-myui::form.input-group-icon>
+                        <x-myui::form.input placeholder="example.com" />
+                    </x-myui::form.input-group>
+                </x-myui::form.field>
+            </div>
+
+            <!-- Inline Field -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Inline Field</h3>
+                <x-myui::form.field orientation="horizontal">
+                    <x-myui::form.field-label>Search</x-myui::form.field-label>
+                    <x-myui::form.input placeholder="Search..." />
+                    <x-myui::button size="sm" class="ml-2">
+                        <x-myui::icons.check data-icon="inline-start" class="w-4 h-4" />
+                        Search
+                    </x-myui::button>
+                </x-myui::form.field>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Grid Layout</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <x-myui::form.field>
+                        <x-myui::form.field-label>First Name</x-myui::form.field-label>
+                        <x-myui::form.input placeholder="John" />
+                    </x-myui::form.field>
+                    <x-myui::form.field>
+                        <x-myui::form.field-label>Last Name</x-myui::form.field-label>
+                        <x-myui::form.input placeholder="Doe" />
+                    </x-myui::form.field>
+                </div>
             </div>
         </section>
 
