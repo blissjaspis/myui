@@ -1,1 +1,1 @@
-<div class="text-sm [&amp;_p]:leading-relaxed">{{ $slot }}</div>
+<div class="text-sm [&_p]:leading-relaxed">{{ $slot }}</div>

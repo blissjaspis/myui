@@ -261,23 +261,68 @@
 
         <!-- Alert Components -->
         <section class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Alert Components</h2>
-            <div class="space-y-4">
-                <x-myui::alert>
-                    <x-myui::icons.check class="w-4 h-4" />
-                    <div>
-                        <h4 class="font-medium">Success!</h4>
-                        <p>Your changes have been saved successfully.</p>
-                    </div>
-                </x-myui::alert>
+            <h2 class="text-xl font-semibold mb-6">Alert Components</h2>
 
-                <x-myui::alert variant="destructive">
-                    <x-myui::icons.x class="w-4 h-4" />
-                    <div>
-                        <h4 class="font-medium">Error!</h4>
-                        <p>Something went wrong. Please try again.</p>
-                    </div>
-                </x-myui::alert>
+            <!-- Variants -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Variants</h3>
+                <div class="space-y-4">
+                    <x-myui::alert>
+                        <x-myui::icons.check class="h-4 w-4" />
+                        <div>
+                            <x-myui::alert.title>Success!</x-myui::alert.title>
+                            <x-myui::alert.description>
+                                Your changes have been saved successfully.
+                            </x-myui::alert.description>
+                        </div>
+                    </x-myui::alert>
+
+                    <x-myui::alert variant="destructive">
+                        <x-myui::icons.x class="h-4 w-4" />
+                        <div>
+                            <x-myui::alert.title>Error!</x-myui::alert.title>
+                            <x-myui::alert.description>
+                                Something went wrong. Please try again.
+                            </x-myui::alert.description>
+                        </div>
+                    </x-myui::alert>
+                </div>
+            </div>
+
+            <!-- Custom Icons and Content -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Custom Icons and Content</h3>
+                <div class="space-y-4">
+                    <x-myui::alert>
+                        <x-myui::icons.loading class="h-4 w-4 animate-spin" />
+                        <div>
+                            <x-myui::alert.title>Loading...</x-myui::alert.title>
+                            <x-myui::alert.description>
+                                Please wait while we process your request.
+                            </x-myui::alert.description>
+                        </div>
+                    </x-myui::alert>
+
+                    <x-myui::alert>
+                        <x-myui::icons.bell class="h-4 w-4" />
+                        <div>
+                            <x-myui::alert.title>Notification</x-myui::alert.title>
+                            <x-myui::alert.description>
+                                You have 3 unread messages in your inbox.
+                            </x-myui::alert.description>
+                        </div>
+                    </x-myui::alert>
+
+                    <x-myui::alert>
+                        <x-myui::icons.info class="h-4 w-4" />
+                        <div>
+                            <x-myui::alert.title>Information</x-myui::alert.title>
+                            <x-myui::alert.description>
+                                This is an informational message that provides additional context.
+                            </x-myui::alert.description>
+                        </div>
+                    </x-myui::alert>
+                </div>
             </div>
         </section>
 
