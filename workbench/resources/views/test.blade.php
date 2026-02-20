@@ -10,26 +10,90 @@
     <div class="max-w-4xl mx-auto space-y-8">
         <h1 class="text-3xl font-bold text-center mb-8">Myui Components Test</h1>
 
-        <!-- Button Variants -->
+        <!-- Button Components -->
         <section class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Button Variants (Namespace Syntax)</h2>
-            <div class="flex flex-wrap gap-4">
-                <x-myui::button variant="default">Default</x-myui::button>
-                <x-myui::button variant="destructive">Destructive</x-myui::button>
-                <x-myui::button variant="outline">Outline</x-myui::button>
-                <x-myui::button variant="secondary">Secondary</x-myui::button>
-                <x-myui::button variant="ghost">Ghost</x-myui::button>
-                <x-myui::button variant="link">Link</x-myui::button>
-            </div>
-        </section>
+            <h2 class="text-xl font-semibold mb-6">Button Components</h2>
 
-        <!-- Button Sizes -->
-        <section class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Button Sizes (Namespace Syntax)</h2>
-            <div class="flex flex-wrap gap-4 items-center">
-                <x-myui::button size="sm">Small</x-myui::button>
-                <x-myui::button size="default">Default</x-myui::button>
-                <x-myui::button size="lg">Large</x-myui::button>
+            <!-- Variants -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Variants</h3>
+                <div class="flex flex-wrap gap-4">
+                    <x-myui::button variant="default">Default</x-myui::button>
+                    <x-myui::button variant="destructive">Destructive</x-myui::button>
+                    <x-myui::button variant="outline">Outline</x-myui::button>
+                    <x-myui::button variant="secondary">Secondary</x-myui::button>
+                    <x-myui::button variant="ghost">Ghost</x-myui::button>
+                    <x-myui::button variant="link">Link</x-myui::button>
+                </div>
+            </div>
+
+            <!-- Sizes -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Sizes</h3>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <x-myui::button size="xs">XS</x-myui::button>
+                    <x-myui::button size="sm">SM</x-myui::button>
+                    <x-myui::button size="default">Default</x-myui::button>
+                    <x-myui::button size="lg">LG</x-myui::button>
+                </div>
+            </div>
+
+            <!-- Icon Buttons -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Icon Buttons</h3>
+                <div class="flex flex-wrap gap-4 items-center">
+                    <x-myui::button size="icon-xs">
+                        <x-myui::icons.check class="w-3 h-3" />
+                    </x-myui::button>
+                    <x-myui::button size="icon-sm">
+                        <x-myui::icons.check class="w-4 h-4" />
+                    </x-myui::button>
+                    <x-myui::button size="icon">
+                        <x-myui::icons.check class="w-4 h-4" />
+                    </x-myui::button>
+                    <x-myui::button size="icon-lg">
+                        <x-myui::icons.check class="w-5 h-5" />
+                    </x-myui::button>
+                </div>
+            </div>
+
+            <!-- Buttons with Icons -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Buttons with Icons</h3>
+                <div class="flex flex-wrap gap-4">
+                    <x-myui::button>
+                        <x-myui::icons.check data-icon="inline-start" class="w-4 h-4 mr-2" />
+                        Save
+                    </x-myui::button>
+                    <x-myui::button variant="outline">
+                        <x-myui::icons.loading data-icon="inline-start" class="w-4 h-4 animate-spin mr-2" />
+                        Loading
+                    </x-myui::button>
+                    <x-myui::button variant="secondary">
+                        Next
+                        <x-myui::icons.x data-icon="inline-end" class="w-4 h-4 ml-2" />
+                    </x-myui::button>
+                    <x-myui::button variant="ghost" size="sm">
+                        <x-myui::icons.check data-icon="inline-start" class="w-4 h-4 mr-2" />
+                        Done
+                    </x-myui::button>
+                </div>
+            </div>
+
+            <!-- Link Buttons -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Link Buttons (asChild)</h3>
+                <div class="flex flex-wrap gap-4">
+                    <x-myui::button asChild>
+                        <a href="/login">Login</a>
+                    </x-myui::button>
+                    <x-myui::button variant="outline" asChild>
+                        <a href="/register">Register</a>
+                    </x-myui::button>
+                    <x-myui::button variant="link" asChild>
+                        <a href="/docs">Documentation</a>
+                    </x-myui::button>
+                </div>
             </div>
         </section>
 
