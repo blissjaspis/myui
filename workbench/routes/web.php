@@ -27,3 +27,7 @@ Route::get('/card', function () {
 Route::get('/input', function () {
     return view('components.input');
 });
+
+Route::get('/breadcrumb', function () {
+    return view('components.breadcrumb');
+});
