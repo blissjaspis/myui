@@ -23,3 +23,7 @@ Route::get('/badge', function () {
 Route::get('/card', function () {
     return view('components.card');
 });
+
+Route::get('/input', function () {
+    return view('components.input');
+});

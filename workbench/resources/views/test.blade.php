@@ -19,8 +19,8 @@
                 </x-myui::card.description>
             </x-myui::card.header>
             <x-myui::card.content>
-                <div class="flex flex-wrap gap-4">
-                    <x-myui::button asChild>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <x-myui::button variant="outline" asChild>
                         <a href="/button">Button Components</a>
                     </x-myui::button>
                     <x-myui::button variant="outline" asChild>
@@ -31,6 +31,9 @@
                     </x-myui::button>
                     <x-myui::button variant="outline" asChild>
                         <a href="/card">Card Components</a>
+                    </x-myui::button>
+                    <x-myui::button variant="outline" asChild>
+                        <a href="/input">Input Components</a>
                     </x-myui::button>
                 </div>
             </x-myui::card.content>
