@@ -283,12 +283,69 @@
 
         <!-- Badge Components -->
         <section class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Badge Components</h2>
-            <div class="flex flex-wrap gap-4">
-                <x-myui::badge>New</x-myui::badge>
-                <x-myui::badge variant="secondary">Secondary</x-myui::badge>
-                <x-myui::badge variant="destructive">Error</x-myui::badge>
-                <x-myui::badge variant="outline">Outline</x-myui::badge>
+            <h2 class="text-xl font-semibold mb-6">Badge Components</h2>
+
+            <!-- Variants -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Variants</h3>
+                <div class="flex flex-wrap gap-4">
+                    <x-myui::badge>Default</x-myui::badge>
+                    <x-myui::badge variant="secondary">Secondary</x-myui::badge>
+                    <x-myui::badge variant="destructive">Destructive</x-myui::badge>
+                    <x-myui::badge variant="outline">Outline</x-myui::badge>
+                    <x-myui::badge variant="ghost">Ghost</x-myui::badge>
+                    <x-myui::badge variant="link">Link</x-myui::badge>
+                </div>
+            </div>
+
+            <!-- With Icon -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">With Icon</h3>
+                <div class="flex flex-wrap gap-4">
+                    <x-myui::badge>
+                        <x-myui::icons.check data-icon="inline-start" class="w-3 h-3 mr-2" />
+                        Verified
+                    </x-myui::badge>
+                    <x-myui::badge variant="secondary">
+                        <x-myui::icons.bookmark data-icon="inline-start" class="w-3 h-3 mr-2" />
+                        Bookmarked
+                    </x-myui::badge>
+                    <x-myui::badge variant="outline">
+                        Premium
+                        <x-myui::icons.star data-icon="inline-end" class="w-3 h-3 ml-2" />
+                    </x-myui::badge>
+                </div>
+            </div>
+
+            <!-- With Spinner -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">With Spinner</h3>
+                <div class="flex flex-wrap gap-4">
+                    <x-myui::badge variant="destructive">
+                        <x-myui::icons.loading data-icon="inline-start" class="w-3 h-3 animate-spin mr-2" />
+                        Deleting
+                    </x-myui::badge>
+                    <x-myui::badge variant="secondary">
+                        <x-myui::icons.loading data-icon="inline-start" class="w-3 h-3 animate-spin mr-2" />
+                        Generating
+                    </x-myui::badge>
+                </div>
+            </div>
+
+            <!-- Link -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Link (asChild)</h3>
+                <div class="flex flex-wrap gap-4">
+                    <x-myui::badge asChild>
+                        <a href="/profile">
+                            <x-myui::icons.external-link data-icon="inline-end" class="w-3 h-3 mr-2" />
+                            Open Link
+                        </a>
+                    </x-myui::badge>
+                    <x-myui::badge variant="outline" asChild>
+                        <a href="/docs">Documentation</a>
+                    </x-myui::badge>
+                </div>
             </div>
         </section>
 
