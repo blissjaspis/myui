@@ -242,22 +242,75 @@
             </div>
         </section>
 
-        <!-- Card Component -->
-        {{-- <section class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-semibold mb-4">Card Component</h2>
-            <x-myui::card>
-                <x-myui::card-header>
-                    <h3 class="text-lg font-semibold">Card Title</h3>
-                    <p class="text-sm text-gray-600">Card description goes here</p>
-                </x-myui::card-header>
-                <x-myui::card-content>
-                    <p class="text-gray-700">This is the card content. You can put any content here.</p>
-                    <div class="mt-4">
-                        <x-myui::button variant="default">Action Button</x-myui::button>
-                    </div>
-                </x-myui::card-content>
-            </x-myui::card>
-        </section> --}}
+        <!-- Card Components -->
+        <section class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-6">Card Components</h2>
+
+            <!-- Basic Card -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Basic Card</h3>
+                <x-myui::card>
+                    <x-myui::card.header>
+                        <x-myui::card.title>Card Title</x-myui::card.title>
+                        <x-myui::card.description>
+                            A brief description of the card content.
+                        </x-myui::card.description>
+                    </x-myui::card.header>
+                    <x-myui::card.content>
+                        <p>This is the main content area of the card. You can place any content here, including text, images, or other components.</p>
+                        <div class="mt-4">
+                            <x-myui::button>Learn More</x-myui::button>
+                        </div>
+                    </x-myui::card.content>
+                </x-myui::card>
+            </div>
+
+            <!-- Card with Footer -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Card with Footer</h3>
+                <x-myui::card>
+                    <x-myui::card.header>
+                        <x-myui::card.title>Project Status</x-myui::card.title>
+                        <x-myui::card.description>
+                            Current progress on the development project.
+                        </x-myui::card.description>
+                    </x-myui::card.header>
+                    <x-myui::card.content>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Progress:</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full w-3/4"></div>
+                            </div>
+                        </div>
+                    </x-myui::card.content>
+                    <x-myui::card.footer class="gap-4">
+                        <x-myui::button variant="outline" size="sm">View Details</x-myui::button>
+                        <x-myui::button size="sm">Complete</x-myui::button>
+                    </x-myui::card.footer>
+                </x-myui::card>
+            </div>
+
+            <!-- Simple Card -->
+            <div class="mb-6">
+                <h3 class="text-lg font-medium mb-3">Simple Card</h3>
+                <x-myui::card>
+                    <x-myui::card.content class="pt-6">
+                        <div class="flex items-center space-x-4">
+                            <x-myui::icons.check class="h-8 w-8 text-green-500" />
+                            <div>
+                                <x-myui::card.title>Success!</x-myui::card.title>
+                                <x-myui::card.description>
+                                    Your action was completed successfully.
+                                </x-myui::card.description>
+                            </div>
+                        </div>
+                    </x-myui::card.content>
+                </x-myui::card>
+            </div>
+        </section>
 
         <!-- Alert Components -->
         <section class="bg-white p-6 rounded-lg shadow">
