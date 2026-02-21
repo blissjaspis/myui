@@ -79,30 +79,56 @@
                     </div>
                 </div>
 
-                <!-- Input with Icons -->
+                <!-- Input Groups -->
                 <div class="mb-6">
-                    <h3 class="text-lg font-medium mb-3">Input with Icons</h3>
+                    <h3 class="text-lg font-medium mb-3">Input Groups</h3>
                     <div class="space-y-4">
                         <x-myui::form.field>
                             <x-myui::form.field-label for="search-input">Search Input</x-myui::form.field-label>
                             <x-myui::form.input-group>
-                                <x-myui::icons.search class="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-                                <x-myui::form.input id="search-input" type="text" placeholder="Search..." class="pl-10" />
+                                <x-myui::form.input-group-icon align="inline-start">
+                                    <x-myui::icons.search class="h-4 w-4" />
+                                </x-myui::form.input-group-icon>
+                                <x-myui::form.input-group-input id="inline-start-input" type="text" placeholder="Search..." />
                             </x-myui::form.input-group>
                             <x-myui::form.field-description>
-                                Input with a search icon positioned on the left.
+                                Input with a search icon using the input-group-icon component.
                             </x-myui::form.field-description>
                         </x-myui::form.field>
 
                         <x-myui::form.field>
-                            <x-myui::form.field-label for="email-input-icon">Email Input</x-myui::form.field-label>
+                            <x-myui::form.field-label for="price-input">Price Input</x-myui::form.field-label>
                             <x-myui::form.input-group>
-                                <x-myui::form.input id="email-input-icon" type="email" placeholder="Enter your email" />
-                                <x-myui::icons.envelope class="w-4 h-4 absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+                                <x-myui::form.input-group-text>$</x-myui::form.input-group-text>
+                                <x-myui::form.input-group-input id="price-input" type="number" placeholder="0.00" />
                             </x-myui::form.input-group>
                             <x-myui::form.field-description>
-                                Input with an envelope icon positioned on the right.
+                                Input with a dollar sign text addon.
                             </x-myui::form.field-description>
+                        </x-myui::form.field>
+
+                        <x-myui::form.field>
+                            <x-myui::form.field-label for="email-domain">Email Input</x-myui::form.field-label>
+                            <x-myui::form.input-group>
+                                <x-myui::form.input-group-icon align="start">
+                                    <x-myui::icons.envelope />
+                                </x-myui::form.input-group-icon>
+                                <x-myui::form.input-group-input id="email-domain" type="email" placeholder="user" />
+                                <x-myui::form.input-group-text align="end">@example.com</x-myui::form.input-group-text>
+                            </x-myui::form.input-group>
+                            <x-myui::form.field-description>
+                                Input with both icon prefix and text suffix.
+                            </x-myui::form.field-description>
+                        </x-myui::form.field>
+
+                        <x-myui::form.field>
+                            <x-myui::form.field-label for="email-domain">Spinner Input</x-myui::form.field-label>
+                            <x-myui::form.input-group>
+                                <x-myui::form.input-group-input id="email-domain" type="text" placeholder="user" />
+                                <x-myui::form.input-group-icon align="end">
+                                    <x-myui::icons.loading class="animate-spin" />
+                                </x-myui::form.input-group-icon>
+                            </x-myui::form.input-group>
                         </x-myui::form.field>
                     </div>
                 </div>

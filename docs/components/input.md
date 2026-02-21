@@ -11,8 +11,10 @@ A text input component for forms and user data entry with built-in styling and a
 | `form.field-label` | Label component for form fields |
 | `form.field-description` | Description text for form fields |
 | `form.field-group` | Groups multiple form fields together |
-| `form.input-group` | Adds icons, text, or buttons inside an input |
+| `form.input-group` | Container for input with prefix/suffix addons |
+| `form.input-group-input` | Input component specifically for use within input groups |
 | `form.input-group-icon` | Icon component for input groups |
+| `form.input-group-text` | Text addon component for input groups |
 
 ## Props
 
@@ -23,6 +25,26 @@ All standard HTML input attributes are supported, plus:
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `type` | string | `'text'` | Input type (text, email, password, file, etc.) |
+
+### Input Group Components
+
+#### Input Group Input Component
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | string | `'text'` | Input type (text, email, password, file, etc.) |
+
+#### Input Group Icon Component
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `align` | string | `'start'` | Position of the icon. Options: `'start'`, `'end'` |
+
+#### Input Group Text Component
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `align` | string | `'start'` | Position of the text addon. Options: `'start'`, `'end'` |
 
 ### Form Field Component
 
@@ -149,14 +171,49 @@ All standard HTML input attributes are supported, plus:
 </x-myui::form.field>
 ```
 
-### Input Group
+### Input Groups
+
+Input groups allow you to add icons, text, or buttons as prefix or suffix addons to inputs.
+
+> **Note:** Use `input-group-input` instead of the regular `input` component when creating input groups. The regular `input` component should be used for standalone inputs only.
+
+#### With Icon
 
 ```blade
 <x-myui::form.field>
     <x-myui::form.field-label>Website URL</x-myui::form.field-label>
     <x-myui::form.input-group>
-        <x-myui::form.input-group-icon>https://</x-myui::form.input-group-icon>
-        <x-myui::form.input placeholder="example.com" />
+        <x-myui::form.input-group-icon>
+            <x-myui::icons.globe class="h-4 w-4" />
+        </x-myui::form.input-group-icon>
+        <x-myui::form.input-group-input type="url" placeholder="example.com" />
+    </x-myui::form.input-group>
+</x-myui::form.field>
+```
+
+#### With Text Addon
+
+```blade
+<x-myui::form.field>
+    <x-myui::form.field-label>Price</x-myui::form.field-label>
+    <x-myui::form.input-group>
+        <x-myui::form.input-group-text>$</x-myui::form.input-group-text>
+        <x-myui::form.input-group-input type="number" placeholder="0.00" />
+    </x-myui::form.input-group>
+</x-myui::form.field>
+```
+
+#### With Both Prefix and Suffix
+
+```blade
+<x-myui::form.field>
+    <x-myui::form.field-label>Email</x-myui::form.field-label>
+    <x-myui::form.input-group>
+        <x-myui::form.input-group-icon align="start">
+            <x-myui::icons.mail class="h-4 w-4" />
+        </x-myui::form.input-group-icon>
+        <x-myui::form.input-group-input type="email" placeholder="user" />
+        <x-myui::form.input-group-text align="end">@example.com</x-myui::form.input-group-text>
     </x-myui::form.input-group>
 </x-myui::form.field>
 ```
