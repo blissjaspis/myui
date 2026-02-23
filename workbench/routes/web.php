@@ -35,3 +35,7 @@ Route::get('/breadcrumb', function () {
 Route::get('/select', function () {
     return view('components.select');
 });
+
+Route::get('/checkbox', function () {
+    return view('components.checkbox');
+});

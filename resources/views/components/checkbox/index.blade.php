@@ -2,21 +2,44 @@
     Checkbox Component
     Documentation: docs/components/checkbox.md
 --}}
-@props(['variant' => 'single', 'model' => null])
+@props([
+    'wire' => null,
+    'name' => null,
+    'id' => null,
+    'value' => null,
+    'checked' => false,
+    'disabled' => false,
+    'required' => false,
+])
 
 @php
-    $class = match ($variant) {
-        'multiline' => 'flex flex-row items-start space-x-3 space-y-0',
-        default => 'flex items-center space-x-2',
-    }
+$checkboxId = $id ?? 'checkbox_' . uniqid();
 @endphp
 
 <div
     x-data="{
-        check: @if($model) @entangle($model) @else false @endif,
-        toggle() { this.check = !this.check; }
+        checked: {{ $wire ? '$wire.entangle(\''.$wire.'\')' : ($checked ? 'true' : 'false') }},
+        toggle() {
+            if (!{{ $disabled ? 'true' : 'false' }}) {
+                this.checked = !this.checked;
+            }
+        }
     }"
-    {{ $attributes->merge(['class' => $class]) }}
+    x-modelable="checked"
+    class="flex items-center space-x-2"
+    {{ $attributes }}
 >
     {{ $slot }}
+
+    @if($name && !$wire)
+        <input
+            type="checkbox"
+            name="{{ $name }}"
+            value="{{ $value ?? '1' }}"
+            x-model="checked"
+            @if($disabled) disabled @endif
+            @if($required) required @endif
+            class="hidden"
+        >
+    @endif
 </div>

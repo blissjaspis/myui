@@ -1,1 +1,0 @@
-<input {{ $attributes->merge() }} aria-hidden="true" tabindex="-1" type="checkbox" checked="" style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 16px; height: 16px;">
