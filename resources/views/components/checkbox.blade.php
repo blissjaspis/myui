@@ -11,14 +11,17 @@
     'value' => null,
     'label' => null,
     'description' => null,
+    'error' => null,
     'checked' => false,
     'disabled' => false,
     'required' => false,
+    'invalid' => false,
 ])
 
 @php
 $checkboxId = $id ?? 'checkbox_' . uniqid();
 $hasSlotContent = trim($slot) !== '';
+$isInvalid = $invalid || $error;
 @endphp
 
 <div
@@ -31,6 +34,7 @@ $hasSlotContent = trim($slot) !== '';
         }
     }"
     x-modelable="checked"
+    x-bind:data-invalid="{{ $isInvalid ? 'true' : 'false' }}"
     class="flex items-start space-x-3"
     {{ $attributes }}
 >
@@ -44,13 +48,20 @@ $hasSlotContent = trim($slot) !== '';
             role="checkbox"
             id="{{ $checkboxId }}"
             x-bind:aria-checked="checked"
+            x-bind:aria-invalid="{{ $isInvalid ? 'true' : 'false' }}"
             x-bind:data-state="checked ? 'checked' : 'unchecked'"
             x-bind:data-disabled="{{ $disabled ? 'true' : 'false' }}"
+            x-bind:data-invalid="{{ $isInvalid ? 'true' : 'false' }}"
             x-on:click="toggle()"
             x-on:keydown.space.prevent="toggle()"
             x-on:keydown.enter.prevent="toggle()"
             @if($disabled) disabled @endif
-            class="peer h-4 w-4 shrink-0 rounded-sm border border-primary dark:border-gray-500 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-indigo-500 dark:data-[state=checked]:text-white transition-colors"
+            @if($isInvalid) aria-invalid="true" @endif
+            class="peer h-4 w-4 shrink-0 rounded-sm border ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-colors
+                {{ $isInvalid 
+                    ? 'border-destructive dark:border-red-500 data-[state=checked]:bg-destructive data-[state=checked]:text-destructive-foreground dark:data-[state=checked]:bg-red-500 dark:data-[state=checked]:text-white' 
+                    : 'border-primary dark:border-gray-500 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-indigo-500 dark:data-[state=checked]:text-white' 
+                }}"
         >
             <span
                 x-show="checked"
@@ -88,6 +99,11 @@ $hasSlotContent = trim($slot) !== '';
                     {{ $description }}
                 </p>
             @endif
+            @if($error)
+                <p class="text-sm text-destructive dark:text-red-400">
+                    {{ $error }}
+                </p>
+            @endif
         </div>
     @endif
 
@@ -99,6 +115,7 @@ $hasSlotContent = trim($slot) !== '';
             x-model="checked"
             @if($disabled) disabled @endif
             @if($required) required @endif
+            @if($isInvalid) aria-invalid="true" @endif
             class="hidden"
         >
     @endif

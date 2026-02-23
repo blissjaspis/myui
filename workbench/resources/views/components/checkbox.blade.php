@@ -95,6 +95,30 @@
                     </div>
                 </div>
 
+                <!-- Invalid State -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium mb-3">Invalid State</h3>
+                    <p class="text-sm text-muted-foreground mb-4">Display error state with red border and error message.</p>
+                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border max-w-md space-y-4">
+                        <x-myui::checkbox
+                            id="invalid-unchecked"
+                            name="invalid_unchecked"
+                            label="Invalid unchecked"
+                            error="You must accept the terms to continue."
+                            :invalid="true"
+                        />
+
+                        <x-myui::checkbox
+                            id="invalid-checked"
+                            name="invalid_checked"
+                            label="Invalid checked"
+                            error="This field has an error."
+                            :checked="true"
+                            :invalid="true"
+                        />
+                    </div>
+                </div>
+
                 <!-- Checkbox Group -->
                 <div class="mb-8">
                     <h3 class="text-lg font-medium mb-3">Checkbox Group</h3>

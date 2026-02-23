@@ -34,6 +34,8 @@ resources/views/components/checkbox.blade.php
 | `checked` | boolean | `false` | Initial checked state |
 | `disabled` | boolean | `false` | Disable the checkbox |
 | `required` | boolean | `false` | Make the checkbox required |
+| `invalid` | boolean | `false` | Show invalid/error state styling |
+| `error` | string | `null` | Error message to display below checkbox |
 
 ### Usage Examples
 
@@ -78,6 +80,18 @@ resources/views/components/checkbox.blade.php
     label="Premium feature"
     description="This feature is only available for Pro users."
     :disabled="true"
+/>
+```
+
+#### Invalid State
+
+```blade
+<x-myui::checkbox
+    id="terms"
+    name="accept_terms"
+    label="Accept terms and conditions"
+    error="You must accept the terms to continue."
+    :invalid="true"
 />
 ```
 
@@ -167,6 +181,7 @@ resources/views/components/checkbox/
 |------|------|---------|-------------|
 | `id` | string | auto-generated | Button ID |
 | `disabled` | boolean | `false` | Disable the button |
+| `invalid` | boolean | `false` | Show invalid/error state styling |
 
 ### `<x-myui::checkbox.label>` Props
 
