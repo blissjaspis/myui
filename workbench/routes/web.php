@@ -43,3 +43,7 @@ Route::get('/checkbox', function () {
 Route::get('/switch', function () {
     return view('components.switch');
 });
+
+Route::get('/popover', function () {
+    return view('components.popover');
+});
