@@ -47,3 +47,7 @@ Route::get('/switch', function () {
 Route::get('/popover', function () {
     return view('components.popover');
 });
+
+Route::get('/dialog', function () {
+    return view('components.dialog');
+});
