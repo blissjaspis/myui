@@ -50,11 +50,11 @@
                                 <div class="grid gap-4 py-4">
                                     <div class="grid grid-cols-4 items-center gap-4">
                                         <label class="text-right text-sm">Name</label>
-                                        <x-myui::form.input class="col-span-3 h-8" value="Pedro Duarte" />
+                                        <x-myui::input class="col-span-3 h-8" value="Pedro Duarte" />
                                     </div>
                                     <div class="grid grid-cols-4 items-center gap-4">
                                         <label class="text-right text-sm">Username</label>
-                                        <x-myui::form.input class="col-span-3 h-8" value="@peduarte" />
+                                        <x-myui::input class="col-span-3 h-8" value="@peduarte" />
                                     </div>
                                 </div>
                                 <x-myui::dialog.footer>
