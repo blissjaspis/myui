@@ -39,3 +39,7 @@ Route::get('/select', function () {
 Route::get('/checkbox', function () {
     return view('components.checkbox');
 });
+
+Route::get('/switch', function () {
+    return view('components.switch');
+});
