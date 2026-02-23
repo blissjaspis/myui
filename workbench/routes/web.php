@@ -51,3 +51,7 @@ Route::get('/popover', function () {
 Route::get('/dialog', function () {
     return view('components.dialog');
 });
+
+Route::get('/sheet', function () {
+    return view('components.sheet');
+});
