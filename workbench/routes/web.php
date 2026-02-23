@@ -31,3 +31,7 @@ Route::get('/input', function () {
 Route::get('/breadcrumb', function () {
     return view('components.breadcrumb');
 });
+
+Route::get('/select', function () {
+    return view('components.select');
+});
