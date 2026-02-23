@@ -4,7 +4,6 @@ namespace BlissJaspis\Myui\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-
 class MyuiServiceProvider extends ServiceProvider
 {
     /**

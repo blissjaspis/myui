@@ -1,6 +1,5 @@
 {{--
-    Select Trigger Component - shadcn/ui style
-    Based on: https://ui.shadcn.com/docs/components/radix/select
+    Select Trigger Component
     Documentation: docs/components/select.md
 --}}
 @props([

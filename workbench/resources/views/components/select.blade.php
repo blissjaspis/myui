@@ -45,7 +45,7 @@
                     </div>
                 </div>
 
-                {{-- <!-- Select with Groups -->
+                <!-- Select with Groups -->
                 <div class="mb-8">
                     <h3 class="text-lg font-medium mb-3">Select with Groups</h3>
                     <p class="text-sm text-muted-foreground mb-4">Organize items with labels and separators.</p>
@@ -143,26 +143,6 @@
                         </form>
                     </div>
                 </div>
-
-                <!-- Legacy Basic Select (keep for comparison) -->
-                <div class="mb-8 border-t pt-6">
-                    <h3 class="text-lg font-medium mb-3">Legacy Basic Select Component</h3>
-                    <p class="text-sm text-muted-foreground mb-4">The original select.basic component still available.</p>
-                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border max-w-md">
-                        <x-myui::select.basic
-                            name="legacy-fruit"
-                            label="Choose a fruit (legacy)"
-                            :options="[
-                                ['value' => 'apple', 'label' => 'Apple'],
-                                ['value' => 'banana', 'label' => 'Banana'],
-                                ['value' => 'orange', 'label' => 'Orange'],
-                                ['value' => 'grape', 'label' => 'Grape'],
-                                ['value' => 'strawberry', 'label' => 'Strawberry']
-                            ]"
-                            placeholder="Select a fruit..."
-                        />
-                    </div>
-                </div> --}}
 
             </x-myui::card.content>
         </x-myui::card>

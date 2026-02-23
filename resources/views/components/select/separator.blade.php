@@ -1,6 +1,5 @@
 {{--
-    Select Separator Component - shadcn/ui style
-    Based on: https://ui.shadcn.com/docs/components/radix/select
+    Select Separator Component
     Documentation: docs/components/select.md
 --}}
 <div

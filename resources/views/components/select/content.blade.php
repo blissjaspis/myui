@@ -1,6 +1,5 @@
 {{--
-    Select Content Component - shadcn/ui style
-    Based on: https://ui.shadcn.com/docs/components/radix/select
+    Select Content Component
     Documentation: docs/components/select.md
 --}}
 @props([
@@ -13,7 +12,7 @@
 
 @php
 $positionClasses = match ($position) {
-    'item-aligned' => 'min-w-[var(--radix-select-trigger-width)] max-h-[var(--radix-select-content-available-height)]',
+    'item-aligned' => 'w-full max-h-96',
     default => 'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border shadow-md',
 };
 
@@ -21,6 +20,11 @@ $alignClasses = match ($align) {
     'center' => 'left-1/2 -translate-x-1/2',
     'end' => 'right-0',
     default => 'left-0',
+};
+
+$sideClasses = match ($side) {
+    'top' => 'bottom-full mb-1',
+    default => 'mt-1',
 };
 @endphp
 
@@ -36,11 +40,7 @@ $alignClasses = match ($align) {
     role="listbox"
     x-ref="content"
     x-bind:data-state="open ? 'open' : 'closed'"
-    x-bind:data-side="side"
-    x-bind:data-align="align"
-    x-bind:data-position="position"
-    x-bind:style="position === 'item-aligned' ? `--radix-select-trigger-width: ${$refs.trigger?.offsetWidth || 0}px; --radix-select-content-available-height: 300px;` : ''"
-    class="absolute z-50 w-full mt-1 {{ $positionClasses }} {{ $alignClasses }} {{ $class ?? '' }}"
+    class="absolute z-50 w-full {{ $sideClasses }} {{ $positionClasses }} {{ $alignClasses }} {{ $class ?? '' }}"
     {{ $attributes }}
 >
     <div class="w-full rounded-md border border-border dark:border-gray-700 bg-popover dark:bg-gray-800 text-popover-foreground dark:text-gray-200 shadow-md {{ $position === 'item-aligned' ? '' : 'p-1' }}">

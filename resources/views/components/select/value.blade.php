@@ -1,6 +1,5 @@
 {{--
-    Select Value Component - shadcn/ui style
-    Based on: https://ui.shadcn.com/docs/components/radix/select
+    Select Value Component
     Documentation: docs/components/select.md
 --}}
 @props([
