@@ -128,6 +128,7 @@ Myui uses the `x-myui::` prefix for all components.
   - [Search DB](docs/components/select-search-db.md)
 - [Separator](docs/components/separator.md)
 - [Sheet](docs/components/sheet.md)
+- [Sonner](docs/components/sonner.md)
 - [Switch](docs/components/switch.md)
 - [Table](docs/components/table.md)
 - Tabs
