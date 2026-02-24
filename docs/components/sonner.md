@@ -11,7 +11,8 @@ Based on [shadcn/ui Sonner](https://ui.shadcn.com/docs/components/radix/sonner).
 - **Position control**: 6 different position options
 - **Rich colors**: Colorful icons for different toast types
 - **Action buttons**: Add clickable actions to toasts
-- **Progress bar**: Visual indicator of remaining time
+- **Progress bar**: Visual indicator of remaining time with optional delay
+- **Optional close button**: Show/hide the X button globally or per-toast
 - **Auto-dismiss**: Configurable duration
 - **Limited visible toasts**: Prevent toast overload
 
@@ -44,6 +45,8 @@ Add the Sonner component to your main layout (e.g., `app.blade.php`):
 | `expand` | boolean | `false` | When true, expands the toast width. |
 | `duration` | number | `4000` | Default duration in milliseconds before auto-dismiss. |
 | `visibleToasts` | number | `3` | Maximum number of toasts visible at once. |
+| `closeButton` | boolean | `true` | Show the close (X) button on toasts. |
+| `progressBarDelay` | number | `0` | Delay in ms before showing progress bar. Set to `Infinity` to hide the progress bar. |
 
 ## Usage
 
@@ -134,9 +137,11 @@ All methods are available via `$store.toast`:
 
 ```typescript
 {
-  title?: string;           // Toast title
-  description?: string;   // Toast description
-  duration?: number;        // Duration in ms (0 = infinite)
+  title?: string;              // Toast title
+  description?: string;        // Toast description
+  duration?: number;           // Duration in ms (0 = infinite)
+  closeButton?: boolean;     // Show/hide close button (overrides global default)
+  progressBarDelay?: number;   // Delay in ms before showing progress bar
   action?: {
     label: string;
     onClick: () => void;
@@ -161,6 +166,38 @@ All methods are available via `$store.toast`:
 ```blade
 {{-- 10 second duration --}}
 <x-myui::sonner duration="10000" />
+```
+
+### Hide Close Button
+
+```blade
+{{-- Global: Hide close button on all toasts --}}
+<x-myui::sonner :close-button="false" />
+
+{{-- Per-toast: Hide close button on a specific toast --}}
+<button @click="$store.toast.show('No close button', { closeButton: false })">
+    Show Toast
+</button>
+```
+
+### Delayed/Hidden Progress Bar
+
+```blade
+{{-- Global: Delay progress bar by 1 second --}}
+<x-myui::sonner :progress-bar-delay="1000" />
+
+{{-- Global: Hide progress bar completely --}}
+<x-myui::sonner :progress-bar-delay="Infinity" />
+
+{{-- Per-toast: Delay progress bar --}}
+<button @click="$store.toast.show('Delayed progress', { progressBarDelay: 2000 })">
+    Show Toast
+</button>
+
+{{-- Per-toast: Hide progress bar --}}
+<button @click="$store.toast.show('No progress bar', { progressBarDelay: Infinity })">
+    Show Toast
+</button>
 ```
 
 ### In Forms

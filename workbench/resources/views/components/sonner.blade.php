@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gray-100" x-data="{}">
     {{-- Sonner Toaster --}}
-    <x-myui::sonner position="bottom-right" />
+    <x-myui::sonner position="right-center" />
 
     <div class="max-w-4xl mx-auto space-y-8 p-8">
         <div class="text-center mb-8">
@@ -131,6 +131,37 @@
                     <div class="bg-white dark:bg-gray-900 p-4 rounded-md border">
                         <x-myui::button @click="$store.toast.show('This toast stays for 10 seconds', { duration: 10000 })">
                             Long Duration Toast
+                        </x-myui::button>
+                    </div>
+                </div>
+
+                <!-- Without Close Button -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium mb-3">Without Close Button</h3>
+                    <p class="text-sm text-muted-foreground mb-4">Toast without the X button (closeButton: false).</p>
+                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border flex flex-wrap gap-2">
+                        <x-myui::button variant="outline" @click="$store.toast.success('No close button here', { closeButton: false })">
+                            Success (No X)
+                        </x-myui::button>
+                        <x-myui::button variant="outline" @click="$store.toast.error('Cannot close manually', { closeButton: false })">
+                            Error (No X)
+                        </x-myui::button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar Options -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium mb-3">Progress Bar Options</h3>
+                    <p class="text-sm text-muted-foreground mb-4">Delay or hide the progress bar.</p>
+                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border space-y-2">
+                        <x-myui::button variant="outline" @click="$store.toast.info('Progress appears after 2 seconds', { duration: 8000, progressBarDelay: 2000 })">
+                            Delayed Progress (2s)
+                        </x-myui::button>
+                        <x-myui::button variant="outline" @click="$store.toast.success('No progress bar visible', { duration: 5000, progressBarDelay: Infinity })">
+                            Hidden Progress Bar
+                        </x-myui::button>
+                        <x-myui::button variant="outline" @click="$store.toast.warning('Progress bar appears immediately (default)', { duration: 5000 })">
+                            Default Progress
                         </x-myui::button>
                     </div>
                 </div>

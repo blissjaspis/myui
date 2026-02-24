@@ -11,6 +11,8 @@
     'expand' => false,
     'duration' => 4000,
     'visibleToasts' => 3,
+    'closeButton' => true,
+    'progressBarDelay' => 0, // Delay in ms before showing progress bar (0 = immediate, Infinity = hide)
 ])
 
 @php
@@ -64,14 +66,16 @@ $positionClasses = match ($position) {
                     })
                     .catch((err) => {
                         this.updateToast(loadingToast.id, error || 'Error', 'error');
-                        throw err;
+                        // Don't re-throw - error is already handled by toast
                     });
             },
 
             addToast(message, type = null, options = {}) {
                 const id = ++this.idCounter;
-                const toastDuration = options.duration !== undefined ? options.duration : 4000;
-                const visibleToasts = options.visibleToasts !== undefined ? options.visibleToasts : 3;
+                const toastDuration = options.duration !== undefined ? options.duration : {{ $duration }};
+                const visibleToasts = options.visibleToasts !== undefined ? options.visibleToasts : {{ $visibleToasts }};
+                const toastCloseButton = options.closeButton !== undefined ? options.closeButton : {{ $closeButton ? 'true' : 'false' }};
+                const toastProgressBarDelay = options.progressBarDelay !== undefined ? options.progressBarDelay : {{ $progressBarDelay }};
 
                 const toast = {
                     id,
@@ -81,8 +85,11 @@ $positionClasses = match ($position) {
                     description: options.description,
                     action: options.action,
                     duration: toastDuration,
+                    closeButton: toastCloseButton,
+                    progressBarDelay: toastProgressBarDelay,
                     visible: true,
                     progress: 100,
+                    showProgress: false,
                 };
 
                 this.toasts.push(toast);
@@ -95,6 +102,14 @@ $positionClasses = match ($position) {
 
                 // Auto dismiss
                 if (toastDuration > 0 && toastDuration !== Infinity) {
+                    // Show progress bar after delay
+                    if (toastProgressBarDelay < Infinity) {
+                        setTimeout(() => {
+                            const t = this.toasts.find(t => t.id === id);
+                            if (t) t.showProgress = true;
+                        }, toastProgressBarDelay);
+                    }
+
                     // Animate progress
                     setTimeout(() => {
                         const t = this.toasts.find(t => t.id === id);
@@ -114,8 +129,15 @@ $positionClasses = match ($position) {
                 if (toast) {
                     toast.message = message;
                     toast.type = type;
-                    toast.duration = 4000;
+                    toast.duration = {{ $duration }};
                     toast.progress = 100;
+                    toast.showProgress = toast.progressBarDelay < Infinity;
+
+                    if (toast.showProgress) {
+                        setTimeout(() => {
+                            toast.showProgress = true;
+                        }, toast.progressBarDelay);
+                    }
 
                     setTimeout(() => {
                         toast.progress = 0;
@@ -123,7 +145,7 @@ $positionClasses = match ($position) {
 
                     setTimeout(() => {
                         this.dismiss(id);
-                    }, 4000);
+                    }, {{ $duration }});
                 }
             },
 
@@ -207,12 +229,13 @@ $positionClasses = match ($position) {
                     <p x-show="toast.title" x-text="toast.title" class="text-sm font-semibold"></p>
                     <p x-show="toast.description" x-text="toast.description" class="text-sm text-muted-foreground mt-1"></p>
                     <p x-show="!toast.title && toast.message" x-text="toast.message" class="text-sm"></p>
-                    <span x-show="toast.action && toast.action.label" x-text="toast.action.label" class="inline-block mt-2 text-sm font-medium text-primary hover:underline"></span>
+                    <span x-show="toast.action && toast.action.label" x-text="toast.action?.label" class="inline-block mt-2 text-sm font-medium text-primary hover:underline"></span>
                 </div>
 
                 {{-- Close Button --}}
                 <button
                     type="button"
+                    x-show="toast.closeButton !== false"
                     @click.stop="$store.toast.dismiss(toast.id)"
                     class="shrink-0 rounded-md p-1 text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -225,7 +248,7 @@ $positionClasses = match ($position) {
 
             {{-- Progress Bar --}}
             <div
-                x-show="toast.duration > 0"
+                x-show="toast.showProgress && toast.duration > 0"
                 class="h-1 bg-muted"
             >
                 <div
