@@ -108,6 +108,7 @@ Myui uses the `x-myui::` prefix for all components.
 
 ### Available Components
 
+- [Accordion](docs/components/accordion.md)
 - [Alert](docs/components/alert.md)
 - [Badge](docs/components/badge.md)
 - [Breadcrumb](docs/components/breadcrumb.md)

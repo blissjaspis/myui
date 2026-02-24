@@ -63,3 +63,7 @@ Route::get('/tabs', function () {
 Route::get('/sonner', function () {
     return view('components.sonner');
 });
+
+Route::get('/accordion', function () {
+    return view('components.accordion');
+});
