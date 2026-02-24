@@ -55,3 +55,7 @@ Route::get('/dialog', function () {
 Route::get('/sheet', function () {
     return view('components.sheet');
 });
+
+Route::get('/tabs', function () {
+    return view('components.tabs');
+});

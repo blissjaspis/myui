@@ -1,23 +1,21 @@
 {{--
     Tabs Trigger Component
+    Based on shadcn/ui Tabs design
     Documentation: docs/components/tabs.md
 --}}
 @props([
     'value' => '',
-    'checked' => false,
 ])
 
-<div>
-    <x-myui::radio-group.item
-        :id=$value
-        :$value
-        :$checked
-        class="peer sr-only"
-    />
-    <label
-        @if ($value) for="{{ $value }}" @endif
-        {{ $attributes->merge(['class' => 'inline-flex w-full items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium ring-offset-background transition-all cursor-pointer peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 peer-checked:bg-background dark:peer-checked:bg-gray-950 peer-checked:text-foreground dark:peer-checked:text-white peer-checked:shadow text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 hover:text-foreground dark:hover:text-gray-200']) }}
-    >
-        {{ $slot }}
-    </label>
-</div>
+<button
+    type="button"
+    role="tab"
+    @click="activeTab = '{{ $value }}'"
+    :aria-selected="activeTab === '{{ $value }}'"
+    :data-state="activeTab === '{{ $value }}' ? 'active' : 'inactive'"
+    {{ $attributes->merge([
+        'class' => 'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm',
+    ]) }}
+>
+    {{ $slot }}
+</button>

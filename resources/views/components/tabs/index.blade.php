@@ -1,7 +1,13 @@
 {{--
     Tabs Component
+    Based on shadcn/ui Tabs design
     Documentation: docs/components/tabs.md
 --}}
-<x-myui::radio-group {{ $attributes }}>
+<div
+    x-data="{
+        activeTab: '{{ $attributes->get('defaultValue', '') }}'
+    }"
+    {{ $attributes->except(['defaultValue']) }}
+>
     {{ $slot }}
-</x-myui::radio-group>
+</div>
