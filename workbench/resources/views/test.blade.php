@@ -59,6 +59,9 @@
                     <x-myui::button variant="outline" asChild>
                         <a href="/tabs">Tabs Components</a>
                     </x-myui::button>
+                    <x-myui::button variant="outline" asChild>
+                        <a href="/sonner">Sonner Components</a>
+                    </x-myui::button>
                 </div>
             </x-myui::card.content>
         </x-myui::card>

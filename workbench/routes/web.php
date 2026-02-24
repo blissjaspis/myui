@@ -59,3 +59,7 @@ Route::get('/sheet', function () {
 Route::get('/tabs', function () {
     return view('components.tabs');
 });
+
+Route::get('/sonner', function () {
+    return view('components.sonner');
+});
