@@ -102,6 +102,8 @@ Add the Sonner component to your main layout (e.g., `app.blade.php`):
 </button>
 ```
 
+**Note:** When the action is clicked, the toast automatically dismisses to prevent multiple clicks.
+
 ### Promise Toast
 
 ```blade

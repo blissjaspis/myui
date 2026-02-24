@@ -172,21 +172,38 @@ $positionClasses = match ($position) {
 </script>
 @endonce
 
+@php
+$isRight = in_array($position, ['top-right', 'bottom-right']);
+$isLeft = in_array($position, ['top-left', 'bottom-left']);
+$isCenter = in_array($position, ['top-center', 'bottom-center']);
+$isTop = in_array($position, ['top-left', 'top-center', 'top-right']);
+
+// Determine transform directions based on position
+$enterX = $isRight ? 'translate-x-[120%]' : ($isLeft ? '-translate-x-[120%]' : 'translate-x-0');
+$enterY = $isCenter ? ($isTop ? '-translate-y-[200%]' : 'translate-y-[200%]') : 'translate-y-0';
+$leaveX = $isRight ? 'translate-x-[120%]' : ($isLeft ? '-translate-x-[120%]' : 'translate-x-0');
+$leaveY = $isCenter ? ($isTop ? '-translate-y-4' : 'translate-y-4') : ($isTop ? '-translate-y-4' : 'translate-y-4');
+@endphp
+
 <div
-    x-data="{ get toasts() { return $store.toast.toasts; } }"
+    x-data="{
+        get toasts() { return $store.toast.toasts; },
+        position: '{{ $position }}'
+    }"
     class="fixed z-[100] flex flex-col p-4 {{ $positionClasses }} {{ $expand ? 'w-full sm:max-w-[420px]' : '' }}"
-    :class="{ 'items-end': ['top-right', 'bottom-right'].includes('{{ $position }}'), 'items-start': ['top-left', 'bottom-left'].includes('{{ $position }}'), 'items-center': ['top-center', 'bottom-center'].includes('{{ $position }}') }"
+    :class="{ 'items-end': ['top-right', 'bottom-right'].includes(position), 'items-start': ['top-left', 'bottom-left'].includes(position), 'items-center': ['top-center', 'bottom-center'].includes(position) }"
 >
-    <template x-for="toast in toasts" :key="toast.id">
+    <template x-for="(toast, index) in toasts" :key="toast.id">
         <div
             x-show="toast.visible"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 translate-y-2 sm:translate-y-0 sm:scale-95"
-            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-            x-transition:leave-end="opacity-0 translate-y-2 sm:translate-y-0 sm:scale-95"
-            @click="toast.action && toast.action.onClick && toast.action.onClick()"
+            x-transition:enter="transform ease-[cubic-bezier(0.34,1.56,0.64,1)] duration-400"
+            x-transition:enter-start="opacity-0 {{ $enterX }} {{ $enterY }} scale-90"
+            x-transition:enter-end="opacity-100 translate-x-0 translate-y-0 scale-100"
+            x-transition:leave="transform ease-[cubic-bezier(0.4,0,0.2,1)] duration-300"
+            x-transition:leave-start="opacity-100 translate-x-0 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 {{ $leaveX }} {{ $leaveY }} scale-95"
+            :style="`transition-delay: ${index * 60}ms`"
+            @click="toast.action && toast.action.onClick && (toast.action.onClick(), $store.toast.dismiss(toast.id))"
             class="pointer-events-auto w-full max-w-[380px] rounded-lg border bg-background shadow-lg mb-3 overflow-hidden"
             :class="{
                 'border-l-4 border-l-green-500': toast.type === 'success',

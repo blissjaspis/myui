@@ -79,8 +79,8 @@
                 <!-- With Action -->
                 <div class="mb-8">
                     <h3 class="text-lg font-medium mb-3">With Action</h3>
-                    <p class="text-sm text-muted-foreground mb-4">Toast with an actionable button.</p>
-                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border">
+                    <p class="text-sm text-muted-foreground mb-4">Toast with an actionable button. Clicking the action auto-dismisses the toast.</p>
+                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border space-y-2">
                         <x-myui::button @click="$store.toast.success('Changes saved successfully', {
                             action: {
                                 label: 'Undo',
@@ -88,6 +88,15 @@
                             }
                         })">
                             Save with Undo
+                        </x-myui::button>
+                        <x-myui::button variant="outline" @click="$store.toast.info('You have a new message', {
+                            duration: 10000,
+                            action: {
+                                label: 'Mark as read',
+                                onClick: () => $store.toast.success('Marked as read!')
+                            }
+                        })">
+                            Long Duration + Action
                         </x-myui::button>
                     </div>
                 </div>
@@ -162,6 +171,21 @@
                         </x-myui::button>
                         <x-myui::button variant="outline" @click="$store.toast.warning('Progress bar appears immediately (default)', { duration: 5000 })">
                             Default Progress
+                        </x-myui::button>
+                    </div>
+                </div>
+
+                <!-- Staggered Multiple Toasts -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium mb-3">Staggered Animations</h3>
+                    <p class="text-sm text-muted-foreground mb-4">Multiple toasts appear with staggered spring animations.</p>
+                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border">
+                        <x-myui::button @click="
+                            $store.toast.info('First notification', { duration: 6000 });
+                            setTimeout(() => $store.toast.success('Second notification', { duration: 6000 }), 100);
+                            setTimeout(() => $store.toast.warning('Third notification', { duration: 6000 }), 200);
+                        ">
+                            Show 3 Toasts (Staggered)
                         </x-myui::button>
                     </div>
                 </div>
