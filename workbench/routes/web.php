@@ -67,3 +67,7 @@ Route::get('/sonner', function () {
 Route::get('/accordion', function () {
     return view('components.accordion');
 });
+
+Route::get('/tooltip', function () {
+    return view('components.tooltip');
+});

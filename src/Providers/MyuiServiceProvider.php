@@ -11,8 +11,6 @@ class MyuiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../../config/myui.php', 'myui');  // Merge config
-
         // Register the facade accessor
         $this->app->singleton('myui', function ($app) {
             return new \BlissJaspis\Myui\Myui();
@@ -25,7 +23,7 @@ class MyuiServiceProvider extends ServiceProvider
     public function boot()
     {
         // Load views from the package
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', $this->app->config['myui.prefix']);
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'myui');
 
         $this->bootPublishing();
     }
@@ -37,10 +35,6 @@ class MyuiServiceProvider extends ServiceProvider
     private function bootPublishing()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../../config/myui.php' => $this->app->configPath('myui.php'),
-            ], 'config');
-
             $this->publishes([
                 __DIR__.'/../../resources/css/myui.css' => resource_path('css/vendor/myui.css'),
             ], 'myui-assets');
