@@ -73,19 +73,19 @@
                 <h3 class="text-lg font-medium mb-3">Buttons with Icons</h3>
                 <div class="flex flex-wrap gap-4">
                     <x-myui::button>
-                        <x-myui::icons.check data-icon="inline-start" class="w-4 h-4" />
+                        <x-myui::icons.check data-icon="inline-start" class="w-4 h-4 mr-2" />
                         Save
                     </x-myui::button>
                     <x-myui::button variant="outline">
-                        <x-myui::icons.loading data-icon="inline-start" class="w-4 h-4 animate-spin" />
+                        <x-myui::icons.loading data-icon="inline-start" class="w-4 h-4 mr-2 animate-spin" />
                         Loading
                     </x-myui::button>
                     <x-myui::button variant="secondary">
                         Next
-                        <x-myui::icons.x data-icon="inline-end" class="w-4 h-4" />
+                        <x-myui::icons.x data-icon="inline-end" class="w-4 h-4 ml-2" />
                     </x-myui::button>
                     <x-myui::button variant="ghost" size="sm">
-                        <x-myui::icons.check data-icon="inline-start" class="w-4 h-4" />
+                        <x-myui::icons.check data-icon="inline-start" class="w-4 h-4 mr-2" />
                         Done
                     </x-myui::button>
                 </div>
