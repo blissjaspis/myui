@@ -71,3 +71,7 @@ Route::get('/accordion', function () {
 Route::get('/tooltip', function () {
     return view('components.tooltip');
 });
+
+Route::get('/button-group', function () {
+    return view('components.button-group');
+});

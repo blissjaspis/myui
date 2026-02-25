@@ -24,6 +24,9 @@
                         <a href="/button">Button Components</a>
                     </x-myui::button>
                     <x-myui::button variant="outline" asChild>
+                        <a href="/button-group">Button Group</a>
+                    </x-myui::button>
+                    <x-myui::button variant="outline" asChild>
                         <a href="/alert">Alert Components</a>
                     </x-myui::button>
                     <x-myui::button variant="outline" asChild>
