@@ -87,6 +87,7 @@ Myui uses the `x-myui::` prefix for all components.
 
 #### Forms & Input
 - [Button](docs/components/button.md) - Interactive button element
+- [Button Group](docs/components/button-group.md) - Group related buttons together
 - [Checkbox](docs/components/checkbox.md) - Binary choice input
 - [Form](docs/components/form.md) - Form wrapper with validation
 - [Input](docs/components/input.md) - Text input field
