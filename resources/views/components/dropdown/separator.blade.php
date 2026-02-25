@@ -1,13 +1,6 @@
-@props(['orientation' => 'horizontal'])
+@props([])
 
-@php
-    $classes = match ($orientation) {
-        'vertical' => 'h-full w-px bg-border',
-        default => 'h-px w-full bg-border',
-    };
-@endphp
-
-<div 
+<div
     role="separator"
-    {{ $attributes->merge(['class' => '-mx-1 my-1 ' . $classes]) }}
+    {{ $attributes->merge(['class' => '-mx-1 my-1 h-px bg-muted']) }}
 ></div> 

@@ -104,7 +104,7 @@ Myui uses the `x-myui::` prefix for all components.
 - [Alert](docs/components/alert.md) - Status message banners
 - [Badge](docs/components/badge.md) - Small status indicators
 - [Dialog](docs/components/dialog.md) - Modal dialog windows
-- [Dropdown](docs/components/dropdown.md) - Contextual menu overlay
+- [Dropdown Menu](docs/components/dropdown.md) - Contextual menu with actions
 - [Popover](docs/components/popover.md) - Floating content panel
 - [Sonner](docs/components/sonner.md) - Toast notifications
 - [Tooltip](docs/components/tooltip.md) - Hover information popup

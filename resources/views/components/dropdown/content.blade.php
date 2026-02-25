@@ -13,7 +13,7 @@
     };
 @endphp
 
-<div 
+<div
     x-show="open"
     x-transition:enter="transition ease-out duration-100"
     x-transition:enter-start="transform opacity-0 scale-95"
@@ -23,12 +23,11 @@
     x-transition:leave-end="transform opacity-0 scale-95"
     class="absolute z-50 mt-{{ $offset }} {{ $width }} {{ $alignmentClasses }}"
     style="display: none;"
-    x-on:click="open = false"
     role="menu"
     aria-orientation="vertical"
     {{ $attributes }}
 >
-    <div class="min-w-32 overflow-hidden rounded-md border border-border dark:border-gray-700 bg-popover dark:bg-gray-800 p-1 text-popover-foreground dark:text-gray-200 shadow-md">
+    <div class="min-w-32 overflow-visible rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md" x-on:click.stop>
         {{ $slot }}
     </div>
 </div> 

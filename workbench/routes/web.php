@@ -75,3 +75,7 @@ Route::get('/tooltip', function () {
 Route::get('/button-group', function () {
     return view('components.button-group');
 });
+
+Route::get('/dropdown', function () {
+    return view('components.dropdown');
+});
