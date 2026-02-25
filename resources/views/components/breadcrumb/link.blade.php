@@ -1,1 +1,1 @@
-<a {{ $attributes->merge(['class' => 'transition-colors hover:text-foreground']) }}>{{ $slot }}</a>
+<a {{ $attributes->merge(['class' => 'block max-w-[200px] truncate transition-colors hover:text-foreground sm:max-w-[250px] md:max-w-[300px]']) }}>{{ $slot }}</a>

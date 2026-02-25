@@ -1,5 +1,9 @@
-<li role="presentation" aria-hidden="true" {{ $attributes->merge(['class' => 'flex h-4 w-4 items-center justify-center']) }}>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-        <path d="m9 18 6-6-6-6"></path>
-    </svg>
+<li role="presentation" aria-hidden="true" {{ $attributes->merge(['class' => 'flex items-center justify-center']) }}>
+    @if(trim($slot))
+        <span class="text-muted-foreground">{{ $slot }}</span>
+    @else
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+            <path d="m9 18 6-6-6-6"></path>
+        </svg>
+    @endif
 </li>

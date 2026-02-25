@@ -1,1 +1,1 @@
-<span role="link" aria-disabled="true" aria-current="page" {{ $attributes->merge(['class' => 'font-normal text-foreground']) }}>{{ $slot }}</span>
+<span role="link" aria-disabled="true" aria-current="page" {{ $attributes->merge(['class' => 'block max-w-[200px] truncate font-normal text-foreground sm:max-w-[250px] md:max-w-[300px]']) }}>{{ $slot }}</span>
