@@ -18,6 +18,12 @@ Publish Myui CSS assets (recommended):
 php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=myui-assets
 ```
 
+Publish the configuration file (optional):
+
+```bash
+php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=myui-config
+```
+
 ### Include Myui theme tokens and base styles
 
 Myui components use shadcn-style theme tokens such as `bg-background`, `text-foreground`, `border-input`, and `ring-ring`.
@@ -45,8 +51,127 @@ For dark mode, use one of these:
 If you prefer generating Myui styles yourself (for custom tree-shaking or deep style overrides), you can configure Tailwind CSS v4 to scan only the Myui components you use:
 
 ```css
-@source "./vendor/blissjaspis/myui/resources/views/components/**/*.blade.php";
+@source "./vendor/blissjaspis/myui/resources/views/components/button.blade.php";
+@source "./vendor/blissjaspis/myui/resources/views/components/input.blade.php";
 ```
+
+## Blaze Optimization Configuration
+
+Myui uses [Blaze](https://github.com/livewire/blaze) under the hood to provide high-performance Blade component rendering. Blaze compiles templates into optimized PHP functions, eliminating 91-97% of rendering overhead.
+
+> **Important:** By installing this package, you can indirectly configure all your Blaze settings via `config/myui.php`. However, keep in mind that **uninstalling this package will erase all Blaze configurations**, so be careful.
+>
+> - If you're new to Blaze and are using this package for the first time (instead of installing Blaze separately), configuring Blaze through `myui.php` is the recommended approach.
+> - If Blaze was already installed globally before this package, your global Blaze configuration will take precedence, and settings in `myui.php` (like `enabled`, `debug`, `throw_exceptions`) will be ignored. Myui will only configure directory-level optimizations.
+
+### How It Works
+
+Myui automatically detects how Blaze is configured in your application:
+
+| Scenario | Myui Behavior |
+|----------|---------------|
+| **Blaze installed globally** (`livewire/blaze` in your composer.json) | Myui only configures **directory optimizations** (see below). You control global settings (`BLAZE_ENABLED`, `BLAZE_DEBUG`) in your app. |
+| **Blaze not installed globally** | Myui manages Blaze entirely, using settings from `config/myui.php`. |
+
+
+### Non-Global Blaze Users
+
+If you haven't installed Blaze separately, Myui manages everything. Configure via:
+
+```env
+MYUI_BLAZE_ENABLED=true
+MYUI_BLAZE_DEBUG=false
+MYUI_BLAZE_THROW_EXCEPTIONS=false
+```
+
+Or in `config/myui.php`:
+
+```php
+'blaze' => [
+    'enabled' => true,
+    'debug' => false,
+    'throw_exceptions' => false,
+    // ... directory configuration
+],
+```
+
+### Optimization Strategies
+
+| Strategy | Description | Best For |
+|----------|-------------|----------|
+| **Compile** (default) | Compiles to optimized PHP functions | General use |
+| **Fold** | Pre-renders to static HTML at compile time | Static components (icons, badges) |
+| **Memo** | Caches repeated renders at runtime | Repeated components (avatars, status icons) |
+
+### Path Resolution
+
+Myui config uses a special path syntax that works correctly even after publishing:
+
+| Syntax | Resolves To |
+|--------|-------------|
+| `'package'` or `null` | `vendor/blissjaspis/myui/resources/views/components` |
+| `'package:icons'` | `vendor/blissjaspis/myui/resources/views/components/icons` |
+| `'package:badge'` | `vendor/blissjaspis/myui/resources/views/components/badge` |
+| `resource_path('views/components')` | Your app's components directory |
+
+**Examples:**
+
+```php
+'directories' => [
+    // Optimize all Myui package components
+    [
+        'path' => 'package',
+        'compile' => true,
+        'fold' => false,
+        'memo' => false,
+    ],
+
+    // Optimize Myui icons with memoization
+    [
+        'path' => 'package:icons',
+        'compile' => true,
+        'memo' => true,
+    ],
+
+    // Optimize your app's custom components
+    [
+        'path' => resource_path('views/components/loading'),
+        'compile' => true,
+        'fold' => true,
+    ],
+],
+
+'excluded' => [
+    // Exclude Myui legacy components
+    'package:legacy',
+
+    // Exclude your app's custom path
+    resource_path('views/components/debug'),
+],
+```
+
+### Component-Level Optimization
+
+You can also use the `@blaze` directive directly in component templates:
+
+```blade
+{{-- Default: use compile strategy --}}
+@blaze
+
+{{-- Enable folding (static components only) --}}
+@blaze(fold: true)
+
+{{-- Enable memoization (components without slots) --}}
+@blaze(memo: true)
+
+{{-- Mark safe props for folding --}}
+@blaze(fold: true, safe: ['color', 'size'])
+```
+
+> **Note:** After changing configuration, always clear compiled views:
+> ```bash
+> php artisan view:clear
+> ```
 
 ## Usage
 
@@ -94,6 +219,7 @@ Myui uses the `x-myui::` prefix for all components.
 
 #### Feedback & Display
 - [Alert](docs/components/alert.md) - Status message banners
+- [Avatar](docs/components/avatar.md) - User profile images with fallback
 - [Badge](docs/components/badge.md) - Small status indicators
 - [Dialog](docs/components/dialog.md) - Modal dialog windows
 - [Dropdown Menu](docs/components/dropdown.md) - Contextual menu with actions
