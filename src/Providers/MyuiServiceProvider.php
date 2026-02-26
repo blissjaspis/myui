@@ -3,6 +3,7 @@
 namespace BlissJaspis\Myui\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Livewire\Blaze\Blaze;
 
 class MyuiServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,8 @@ class MyuiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blaze::optimize()->in(__DIR__.'/../../resources/views');
+
         // Load views from the package
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'myui');
 
@@ -36,7 +39,7 @@ class MyuiServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../../resources/css/myui.css' => resource_path('css/vendor/myui.css'),
+                __DIR__.'/../../resources/dist/myui.css' => resource_path('css/vendor/myui.css'),
             ], 'myui-assets');
         }
     }

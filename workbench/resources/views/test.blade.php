@@ -103,23 +103,6 @@
                 </div>
             </x-myui::card.content>
         </x-myui::card>
-
-        <!-- Package Info -->
-        <x-myui::card>
-            <x-myui::card.header>
-                <x-myui::card.title>Package Information</x-myui::card.title>
-                <x-myui::card.description>
-                    Current package details and configuration.
-                </x-myui::card.description>
-            </x-myui::card.header>
-            <x-myui::card.content>
-                <div class="space-y-2">
-                    <p><strong>Version:</strong> {{ \BlissJaspis\Myui\Facades\Myui::version() }}</p>
-                    <p><strong>Framework:</strong> {{ \BlissJaspis\Myui\Facades\Myui::framework() }}</p>
-                    <p><strong>Prefix:</strong> {{ \BlissJaspis\Myui\Facades\Myui::prefix() }}</p>
-                </div>
-            </x-myui::card.content>
-        </x-myui::card>
     </div>
 </body>
 </html>

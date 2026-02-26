@@ -18,19 +18,12 @@ Publish Myui CSS assets (recommended):
 php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=myui-assets
 ```
 
-For your application to use the Myui components, you must configure Tailwind CSS v4 to scan the package's views:
-
-```css
-@source "./vendor/blissjaspis/myui/resources/views/**/*.blade.php";
-```
-
 ### Include Myui theme tokens and base styles
 
 Myui components use shadcn-style theme tokens such as `bg-background`, `text-foreground`, `border-input`, and `ring-ring`.
-In addition to Tailwind scanning, publish assets and import the published stylesheet in your app CSS:
+The published `vendor/myui.css` file is pre-built, so your application does not need to scan Myui package views with Tailwind. You can use only this file:
 
 ```css
-@import "tailwindcss";
 @import "./vendor/myui.css";
 ```
 
@@ -47,13 +40,12 @@ For dark mode, use one of these:
 - Global dark mode: add `.dark` on `<html>` or `<body>`.
 - Scoped dark mode: add `.dark` to the wrapper (`<div class="myui-theme dark">`) or place wrapper inside a dark parent (`<div class="dark"><div class="myui-theme">...</div></div>`).
 
-## Optimization (Tree Shaking)
+## Optional: Tailwind-level customization
 
-By default, the configuration above scans all Myui components. To optimize your CSS size by only including the styles for the components you actually use, you can specify the specific directories for those components instead of scanning the entire package:
+If you prefer generating Myui styles yourself (for custom tree-shaking or deep style overrides), you can configure Tailwind CSS v4 to scan only the Myui components you use:
 
 ```css
-@source "./vendor/blissjaspis/myui/resources/views/components/button/**/*.blade.php";
-@source "./vendor/blissjaspis/myui/resources/views/components/card/**/*.blade.php";
+@source "./vendor/blissjaspis/myui/resources/views/components/**/*.blade.php";
 ```
 
 ## Usage
