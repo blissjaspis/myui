@@ -74,6 +74,9 @@
                     <x-myui::button variant="outline" asChild>
                         <a href="/dropdown">Dropdown Menu</a>
                     </x-myui::button>
+                    <x-myui::button variant="outline" asChild>
+                        <a href="/avatar">Avatar Components</a>
+                    </x-myui::button>
                 </div>
             </x-myui::card.content>
         </x-myui::card>

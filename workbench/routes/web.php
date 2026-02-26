@@ -79,3 +79,7 @@ Route::get('/button-group', function () {
 Route::get('/dropdown', function () {
     return view('components.dropdown');
 });
+
+Route::get('/avatar', function () {
+    return view('components.avatar');
+});
