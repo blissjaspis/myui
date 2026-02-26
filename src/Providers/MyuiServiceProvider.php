@@ -12,11 +12,6 @@ class MyuiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Register the facade accessor
-        $this->app->singleton('myui', function ($app) {
-            return new \BlissJaspis\Myui\Myui();
-        });
-
         // Merge default configuration
         $this->mergeConfigFrom(
             __DIR__.'/../../config/myui.php',
