@@ -77,32 +77,9 @@
                     <x-myui::button variant="outline" asChild>
                         <a href="/avatar">Avatar Components</a>
                     </x-myui::button>
-                </div>
-            </x-myui::card.content>
-        </x-myui::card>
-
-        <!-- Icons -->
-        <x-myui::card>
-            <x-myui::card.header>
-                <x-myui::card.title>Icons</x-myui::card.title>
-                <x-myui::card.description>
-                    Available icon components for use throughout the UI.
-                </x-myui::card.description>
-            </x-myui::card.header>
-            <x-myui::card.content>
-                <div class="flex flex-wrap gap-4 items-center">
-                    <div class="flex items-center gap-2">
-                        <x-myui::icons.loading class="w-6 h-6 animate-spin" />
-                        <span>Loading</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <x-myui::icons.check class="w-6 h-6 text-green-500" />
-                        <span>Check</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <x-myui::icons.x class="w-6 h-6 text-red-500" />
-                        <span>Close</span>
-                    </div>
+                    <x-myui::button variant="outline" asChild>
+                        <a href="/icons">Icons Gallery</a>
+                    </x-myui::button>
                 </div>
             </x-myui::card.content>
         </x-myui::card>

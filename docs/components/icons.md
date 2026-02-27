@@ -6,7 +6,7 @@ The icon names match Heroicons' naming convention, making it easy to switch betw
 
 ## Icon Collection Status
 
-This is a **partial collection** of Heroicons. Currently includes 43 icons, with more being added over time. All icon names match the [Heroicons](https://heroicons.com) naming convention for easy migration from manual SVG usage.
+This is a **partial collection** of Heroicons. Currently includes 57 icons, with more being added over time. All icon names match the [Heroicons](https://heroicons.com) naming convention for easy migration from manual SVG usage.
 
 ## Usage
 
@@ -43,10 +43,16 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Check Badge | `<x-myui::icons.check-badge />` | Verified badge checkmark |
 | X | `<x-myui::icons.x />` | Close/X mark |
 | Chevron Down | `<x-myui::icons.chevron-down />` | Downward chevron |
-| Ellipsis Horizontal | `<x-myui::icons.ellipsis-horizontal />` | Three dots menu |
+| Chevron Up | `<x-myui::icons.chevron-up />` | Upward chevron |
+| Chevron Left | `<x-myui::icons.chevron-left />` | Left chevron |
+| Chevron Right | `<x-myui::icons.chevron-right />` | Right chevron |
+| Ellipsis Horizontal | `<x-myui::icons.ellipsis-horizontal />` | Three dots horizontal |
+| Ellipsis Vertical | `<x-myui::icons.ellipsis-vertical />` | Three dots vertical |
 | External Link | `<x-myui::icons.external-link />` | Arrow pointing out |
 | Arrow Top Right on Square | `<x-myui::icons.arrow-top-right-on-square />` | External link |
 | Arrow Right Start on Rectangle | `<x-myui::icons.arrow-right-start-on-rectangle />` | Logout/exit |
+| Arrow Left | `<x-myui::icons.arrow-left />` | Arrow pointing left |
+| Arrow Right | `<x-myui::icons.arrow-right />` | Arrow pointing right |
 | Loading | `<x-myui::icons.loading />` | Spinner/loading indicator |
 
 ### Communication & Social
@@ -54,6 +60,7 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Icon | Component | Description |
 |------|-----------|-------------|
 | Envelope | `<x-myui::icons.envelope />` | Email/message |
+| Paper Airplane | `<x-myui::icons.paper-airplane />` | Send/message |
 | Bell | `<x-myui::icons.bell />` | Notifications |
 | Chat Bubble Oval Left | `<x-myui::icons.chat-bubble-oval-left />` | Chat/message |
 | Hashtag | `<x-myui::icons.hashtag />` | Tag/social |
@@ -77,6 +84,8 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Lock Open | `<x-myui::icons.lock-open />` | Unlocked |
 | Shield Exclamation | `<x-myui::icons.shield-exclamation />` | Security warning |
 | Percent Badge | `<x-myui::icons.percent-badge />` | Discount/percentage |
+| Face Smile | `<x-myui::icons.face-smile />` | Happy face |
+| Face Frown | `<x-myui::icons.face-frown />` | Sad face |
 
 ### Commerce & Shopping
 
@@ -87,6 +96,7 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Building Storefront | `<x-myui::icons.building-storefront />` | Store/shop |
 | Truck | `<x-myui::icons.truck />` | Shipping/delivery |
 | Briefcase | `<x-myui::icons.briefcase />` | Business/work |
+| Wallet | `<x-myui::icons.wallet />` | Payment/wallet |
 
 ### Search & Location
 
@@ -95,6 +105,7 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Search | `<x-myui::icons.search />` | Search magnifying glass |
 | Magnifying Glass | `<x-myui::icons.magnifying-glass />` | Alternative search |
 | Map Pin | `<x-myui::icons.map-pin />` | Location/marker |
+| Funnel | `<x-myui::icons.funnel />` | Filter |
 
 ### Information & Feedback
 
@@ -112,9 +123,20 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Sun | `<x-myui::icons.sun />` | Light mode |
 | Moon | `<x-myui::icons.moon />` | Dark mode |
 
+### Media & Tools
+
+| Icon | Component | Description |
+|------|-----------|-------------|
+| Camera | `<x-myui::icons.camera />` | Camera/photo |
+| Printer | `<x-myui::icons.printer />` | Print |
+| Cog | `<x-myui::icons.cog />` | Settings/gear |
+| Calendar | `<x-myui::icons.calendar />` | Date/calendar |
+
 ## Complete Icon List
 
 ```
+├── arrow-left.blade.php
+├── arrow-right.blade.php
 ├── arrow-right-start-on-rectangle.blade.php
 ├── arrow-top-right-on-square.blade.php
 ├── at-symbol.blade.php
@@ -123,17 +145,26 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 ├── bookmark-slash.blade.php
 ├── briefcase.blade.php
 ├── building-storefront.blade.php
+├── calendar.blade.php
+├── camera.blade.php
 ├── chat-bubble-oval-left.blade.php
 ├── check-badge.blade.php
 ├── check-circle.blade.php
 ├── check.blade.php
 ├── chevron-down.blade.php
+├── chevron-left.blade.php
+├── chevron-right.blade.php
+├── cog.blade.php
 ├── ellipsis-horizontal.blade.php
+├── ellipsis-vertical.blade.php
 ├── envelope.blade.php
 ├── external-link.blade.php
 ├── eye-slash.blade.php
 ├── eye.blade.php
+├── face-frown.blade.php
+├── face-smile.blade.php
 ├── fire.blade.php
+├── funnel.blade.php
 ├── hashtag.blade.php
 ├── heart.blade.php
 ├── info.blade.php
@@ -145,7 +176,9 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 ├── magnifying-glass.blade.php
 ├── map-pin.blade.php
 ├── moon.blade.php
+├── paper-airplane.blade.php
 ├── percent-badge.blade.php
+├── printer.blade.php
 ├── question-mark-circle.blade.php
 ├── search.blade.php
 ├── shield-exclamation.blade.php
@@ -157,6 +190,7 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 ├── truck.blade.php
 ├── user-circle.blade.php
 ├── user.blade.php
+├── wallet.blade.php
 ├── x.blade.php
 ```
 

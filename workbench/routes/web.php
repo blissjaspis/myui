@@ -83,3 +83,7 @@ Route::get('/dropdown', function () {
 Route::get('/avatar', function () {
     return view('components.avatar');
 });
+
+Route::get('/icons', function () {
+    return view('components.icons');
+});
