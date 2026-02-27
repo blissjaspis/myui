@@ -6,7 +6,7 @@ The icon names match Heroicons' naming convention, making it easy to switch betw
 
 ## Icon Collection Status
 
-This is a **partial collection** of Heroicons. Currently includes 57 icons, with more being added over time. All icon names match the [Heroicons](https://heroicons.com) naming convention for easy migration from manual SVG usage.
+This is a **partial collection** of Heroicons. Currently includes 59 icons, with more being added over time. All icon names match the [Heroicons](https://heroicons.com) naming convention for easy migration from manual SVG usage.
 
 ## Usage
 
@@ -53,6 +53,7 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Arrow Right Start on Rectangle | `<x-myui::icons.arrow-right-start-on-rectangle />` | Logout/exit |
 | Arrow Left | `<x-myui::icons.arrow-left />` | Arrow pointing left |
 | Arrow Right | `<x-myui::icons.arrow-right />` | Arrow pointing right |
+| Cloud Arrow Down | `<x-myui::icons.cloud-arrow-down />` | Download from cloud |
 | Loading | `<x-myui::icons.loading />` | Spinner/loading indicator |
 
 ### Communication & Social
@@ -97,6 +98,7 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Truck | `<x-myui::icons.truck />` | Shipping/delivery |
 | Briefcase | `<x-myui::icons.briefcase />` | Business/work |
 | Wallet | `<x-myui::icons.wallet />` | Payment/wallet |
+| Credit Card | `<x-myui::icons.credit-card />` | Payment card |
 
 ### Search & Location
 
@@ -123,6 +125,12 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 | Sun | `<x-myui::icons.sun />` | Light mode |
 | Moon | `<x-myui::icons.moon />` | Dark mode |
 
+### Miscellaneous
+
+| Icon | Component | Description |
+|------|-----------|-------------|
+| Cake | `<x-myui::icons.cake />` | Birthday/celebration |
+
 ### Media & Tools
 
 | Icon | Component | Description |
@@ -145,9 +153,11 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 ├── bookmark-slash.blade.php
 ├── briefcase.blade.php
 ├── building-storefront.blade.php
+├── cake.blade.php
 ├── calendar.blade.php
 ├── camera.blade.php
 ├── chat-bubble-oval-left.blade.php
+├── cloud-arrow-down.blade.php
 ├── check-badge.blade.php
 ├── check-circle.blade.php
 ├── check.blade.php
@@ -155,6 +165,7 @@ All icons accept standard HTML attributes through `{{ $attributes->merge() }}`, 
 ├── chevron-left.blade.php
 ├── chevron-right.blade.php
 ├── cog.blade.php
+├── credit-card.blade.php
 ├── ellipsis-horizontal.blade.php
 ├── ellipsis-vertical.blade.php
 ├── envelope.blade.php

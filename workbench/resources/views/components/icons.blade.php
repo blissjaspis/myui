@@ -10,7 +10,7 @@
     <div class="max-w-6xl mx-auto space-y-8">
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold mb-2">Icons</h1>
-            <p class="text-gray-600 mb-4">57 Heroicons-based SVG icon components</p>
+            <p class="text-gray-600 mb-4">59 Heroicons-based SVG icon components</p>
             <x-myui::button variant="link" asChild>
                 <a href="/">← Back to All Components</a>
             </x-myui::button>
@@ -78,6 +78,10 @@
                     <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
                         <x-myui::icons.arrow-right-start-on-rectangle class="w-6 h-6" />
                         <span class="text-xs text-gray-600">logout</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
+                        <x-myui::icons.cloud-arrow-down class="w-6 h-6" />
+                        <span class="text-xs text-gray-600">cloud-down</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
                         <x-myui::icons.loading class="w-6 h-6 animate-spin" />
@@ -228,6 +232,10 @@
                         <x-myui::icons.wallet class="w-6 h-6" />
                         <span class="text-xs text-gray-600">wallet</span>
                     </div>
+                    <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
+                        <x-myui::icons.credit-card class="w-6 h-6" />
+                        <span class="text-xs text-gray-600">credit-card</span>
+                    </div>
                 </div>
             </x-myui::card.content>
         </x-myui::card>
@@ -240,12 +248,8 @@
             <x-myui::card.content>
                 <div class="grid grid-cols-4 md:grid-cols-4 gap-4">
                     <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
-                        <x-myui::icons.search class="w-6 h-6" />
-                        <span class="text-xs text-gray-600">search</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
                         <x-myui::icons.magnifying-glass class="w-6 h-6" />
-                        <span class="text-xs text-gray-600">magnifying</span>
+                        <span class="text-xs text-gray-600">magnifying-glass</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
                         <x-myui::icons.map-pin class="w-6 h-6" />
@@ -305,6 +309,21 @@
             </x-myui::card.content>
         </x-myui::card>
 
+        <!-- Miscellaneous -->
+        <x-myui::card>
+            <x-myui::card.header>
+                <x-myui::card.title>Miscellaneous</x-myui::card.title>
+            </x-myui::card.header>
+            <x-myui::card.content>
+                <div class="grid grid-cols-4 md:grid-cols-1 gap-4 max-w-[100px]">
+                    <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-gray-50">
+                        <x-myui::icons.cake class="w-6 h-6" />
+                        <span class="text-xs text-gray-600">cake</span>
+                    </div>
+                </div>
+            </x-myui::card.content>
+        </x-myui::card>
+
         <!-- Media & Tools -->
         <x-myui::card>
             <x-myui::card.header>
@@ -359,7 +378,7 @@
                 <div>
                     <h4 class="text-sm font-medium mb-2">Input with Icon</h4>
                     <div class="relative max-w-sm">
-                        <x-myui::icons.search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <x-myui::icons.magnifying-glass class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <x-myui::input class="pl-10" placeholder="Search..." />
                     </div>
                 </div>
