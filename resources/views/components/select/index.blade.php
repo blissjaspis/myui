@@ -24,7 +24,6 @@
         $watch('value', () => { updateSelectedLabel(); });
         updateSelectedLabel();
     "
-    x-on:click.away="open = false"
     x-on:keydown.escape.window="open = false"
     x-on:select-item.window="
         if ($event.detail.selectId === $el.dataset.selectId) {

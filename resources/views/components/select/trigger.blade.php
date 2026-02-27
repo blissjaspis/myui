@@ -18,6 +18,7 @@ $sizeClasses = match ($size) {
 <button
     type="button"
     role="combobox"
+    x-ref="trigger"
     x-on:click="open = !open"
     x-bind:aria-expanded="open"
     aria-controls=""

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Components - Myui</title>
     @vite(['workbench/resources/css/app.css'])
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-100 p-8">
@@ -141,6 +143,33 @@
                                 </x-myui::select.content>
                             </x-myui::select>
                         </form>
+                    </div>
+                </div>
+
+                <!-- Select with Teleport (Inside Overflow Container) -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium mb-3">Select with x-teleport</h3>
+                    <p class="text-sm text-muted-foreground mb-4">
+                        The select content is teleported to the body, allowing it to escape overflow containers.
+                        This select is inside a container with <code>overflow-hidden</code> and <code>h-32</code>, but the dropdown still shows fully.
+                    </p>
+                    <div class="bg-white dark:bg-gray-900 p-4 rounded-md border max-w-md overflow-hidden h-32 relative">
+                        <p class="text-xs text-gray-500 mb-2">Container with overflow-hidden</p>
+                        <x-myui::select name="country">
+                            <x-myui::select.trigger>
+                                <x-myui::select.value placeholder="Select country" />
+                            </x-myui::select.trigger>
+                            <x-myui::select.content>
+                                <x-myui::select.item value="us">United States</x-myui::select.item>
+                                <x-myui::select.item value="uk">United Kingdom</x-myui::select.item>
+                                <x-myui::select.item value="ca">Canada</x-myui::select.item>
+                                <x-myui::select.item value="au">Australia</x-myui::select.item>
+                                <x-myui::select.item value="de">Germany</x-myui::select.item>
+                                <x-myui::select.item value="fr">France</x-myui::select.item>
+                                <x-myui::select.item value="jp">Japan</x-myui::select.item>
+                                <x-myui::select.item value="sg">Singapore</x-myui::select.item>
+                            </x-myui::select.content>
+                        </x-myui::select>
                     </div>
                 </div>
 

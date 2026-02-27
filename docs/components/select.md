@@ -2,6 +2,19 @@
 
 A collection of select/dropdown components inspired by shadcn/ui design patterns, built with Laravel Blade and Alpine.js.
 
+## Requirements
+
+The select component requires the following Alpine.js plugins:
+
+```html
+<!-- Alpine.js Anchor plugin (for positioning) -->
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.x.x/dist/cdn.min.js"></script>
+<!-- Alpine.js Focus plugin (for focus management) -->
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+<!-- Alpine.js Core -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+```
+
 ## Overview
 
 This package provides two select component approaches:
@@ -73,10 +86,14 @@ Composable select components that follow shadcn/ui design patterns.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `position` | string | `'popper'` | Positioning: `'popper'`, `'item-aligned'` |
-| `align` | string | `'start'` | Alignment: `'start'`, `'center'`, `'end'` |
+| `align` | string | `'center'` | Alignment: `'start'`, `'center'`, `'end'` |
 | `side` | string | `'bottom'` | Side: `'top'`, `'bottom'` |
 | `sideOffset` | int | `4` | Distance from trigger |
+| `teleport` | string | `'body'` | Element to teleport content to |
+| `matchTriggerWidth` | boolean | `true` | Match dropdown width to trigger button |
 | `class` | string | `null` | Additional CSS classes |
+
+> **Note:** The select content uses Alpine.js `x-teleport` to portal the dropdown to the document body. This ensures proper z-index handling and positioning even inside overflow containers or modals. By default, the dropdown width automatically matches the trigger button's width using Alpine's anchor plugin.
 
 #### `<x-myui::select.item>` Props
 
@@ -155,6 +172,23 @@ Composable select components that follow shadcn/ui design patterns.
         @foreach($users as $user)
             <x-myui::select.item :value="$user->id">{{ $user->name }}</x-myui::select.item>
         @endforeach
+    </x-myui::select.content>
+</x-myui::select>
+```
+
+#### Custom Dropdown Width
+
+By default, the dropdown automatically matches the trigger button's width. To use a custom width instead:
+
+```blade
+<x-myui::select name="theme">
+    <x-myui::select.trigger>
+        <x-myui::select.value placeholder="Select a theme" />
+    </x-myui::select.trigger>
+    <x-myui::select.content :matchTriggerWidth="false" class="w-96">
+        <x-myui::select.item value="light">Light</x-myui::select.item>
+        <x-myui::select.item value="dark">Dark</x-myui::select.item>
+        <x-myui::select.item value="system">System</x-myui::select.item>
     </x-myui::select.content>
 </x-myui::select>
 ```

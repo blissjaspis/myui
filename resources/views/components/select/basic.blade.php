@@ -120,7 +120,7 @@ $noResults = '
             <template x-if="filteredOptions().length > 0">
                 <template x-for="option in filteredOptions()" :key="option.value">
                     <div @click="selected = option.value; if ('{{ $wire }}') $wire.set('{{ $wire }}', option.value); open = false"
-                        class="relative flex items-center justify-between rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground dark:hover:bg-gray-700 dark:text-gray-200 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer"
+                        class="relative flex items-center justify-between rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground dark:hover:bg-gray-700 dark:text-gray-200 data-disabled:pointer-events-none data-disabled:opacity-50 cursor-pointer"
                         :class="{'bg-accent dark:bg-gray-700': selected === option.value}">
                         <span x-text="option.label"></span>
                         <span x-show="selected == option.value" class="text-indigo-600 dark:text-indigo-400">
