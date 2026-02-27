@@ -12,12 +12,6 @@ You can install the package via composer:
 composer require blissjaspis/myui
 ```
 
-Publish Myui CSS assets (recommended):
-
-```bash
-php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServiceProvider" --tag=myui-assets
-```
-
 Publish the configuration file (optional):
 
 ```bash
@@ -27,10 +21,13 @@ php artisan vendor:publish --provider="BlissJaspis\Myui\Providers\MyuiServicePro
 ### Include Myui theme tokens and base styles
 
 Myui components use shadcn-style theme tokens such as `bg-background`, `text-foreground`, `border-input`, and `ring-ring`.
-The published `vendor/myui.css` file is pre-built, so your application does not need to scan Myui package views with Tailwind. You can use only this file:
+In your app CSS, import Tailwind and Myui CSS directly from the package, then add Tailwind source scanning for the components you use:
 
 ```css
-@import "./vendor/myui.css";
+@import "tailwindcss";
+@import "../../vendor/blissjaspis/myui/resources/css/myui.css";
+
+@source "../../vendor/blissjaspis/myui/resources/views/components/*.blade.php";
 ```
 
 If your app already has its own global design tokens, you can scope Myui styles by wrapping your UI in:
@@ -46,13 +43,13 @@ For dark mode, use one of these:
 - Global dark mode: add `.dark` on `<html>` or `<body>`.
 - Scoped dark mode: add `.dark` to the wrapper (`<div class="myui-theme dark">`) or place wrapper inside a dark parent (`<div class="dark"><div class="myui-theme">...</div></div>`).
 
-## Optional: Tailwind-level customization
+## Optional: Tailwind scan optimization
 
-If you prefer generating Myui styles yourself (for custom tree-shaking or deep style overrides), you can configure Tailwind CSS v4 to scan only the Myui components you use:
+To optimize CSS output, point `@source` to specific component files or directories you actually use:
 
 ```css
-@source "./vendor/blissjaspis/myui/resources/views/components/button.blade.php";
-@source "./vendor/blissjaspis/myui/resources/views/components/input.blade.php";
+@source "../../vendor/blissjaspis/myui/resources/views/components/button/**/*.blade.php";
+@source "../../vendor/blissjaspis/myui/resources/views/components/input/**/*.blade.php";
 ```
 
 ## Blaze Optimization Configuration
@@ -232,6 +229,9 @@ Myui uses the `x-myui::` prefix for all components.
 - [Link](docs/components/link.md) - Styled anchor elements
 - [Table](docs/components/table.md) - Data table component
 - [Typography](docs/components/typography.md) - Text styling helpers
+
+#### Icons
+- [Icons](docs/components/icons.md) - Collection of SVG icon components
 
 #### AI/LLM Components
 - [LLM](docs/components/llm.md) - AI/LLM chat interface components

@@ -178,13 +178,13 @@ class MyuiServiceProvider extends ServiceProvider
 
             // Publish assets
             $this->publishes([
-                __DIR__.'/../../resources/dist/myui.css' => resource_path('css/vendor/myui.css'),
+                __DIR__.'/../../resources/css/myui.css' => resource_path('css/vendor/myui.css'),
             ], 'myui-assets');
 
             // Publish all (for convenience)
             $this->publishes([
                 __DIR__.'/../../config/myui.php' => config_path('myui.php'),
-                __DIR__.'/../../resources/dist/myui.css' => resource_path('css/vendor/myui.css'),
+                __DIR__.'/../../resources/css/myui.css' => resource_path('css/vendor/myui.css'),
             ], 'myui');
         }
     }

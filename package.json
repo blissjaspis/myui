@@ -9,8 +9,7 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "build:css": "tailwindcss -i ./resources/css/myui.prebuilt.css -o ./resources/dist/myui.css --minify"
+        "build": "vite build"
     },
     "repository": {
         "type": "git",
@@ -25,7 +24,6 @@
     },
     "homepage": "https://github.com/blissjaspis/myui#readme",
     "devDependencies": {
-        "@tailwindcss/cli": "^4.2.1",
         "@tailwindcss/vite": "^4.2.0",
         "autoprefixer": "^10.4.24",
         "laravel-vite-plugin": "^2.1.0",
