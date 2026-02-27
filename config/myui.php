@@ -110,12 +110,12 @@ return [
             ],
 
             // Example: Icons benefit from memoization
-            // [
-            //     'path' => 'package:icons',  // Auto-resolved to package icons subfolder
-            //     'compile' => true,
-            //     'fold' => false,
-            //     'memo' => true,
-            // ],
+            [
+                'path' => 'package:icons',  // Auto-resolved to package icons subfolder
+                'compile' => true,
+                'fold' => false,
+                'memo' => true,
+            ],
 
             // Example: Static components can use folding
             // [
