@@ -62,7 +62,7 @@ Composable select components that follow shadcn/ui design patterns.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `wire` | string | `null` | Livewire property for entanglement (Livewire v4 compatible) |
+| `wire` | string | `null` | Livewire property for reactive binding (Livewire v4 compatible) |
 | `name` | string | `null` | Form input name (creates hidden input) |
 | `value` | string | `null` | Initial selected value |
 | `disabled` | boolean | `false` | Disable the entire select |
@@ -163,7 +163,7 @@ Composable select components that follow shadcn/ui design patterns.
 
 #### Livewire Integration (Livewire v4)
 
-The select component uses Alpine v3 and supports Livewire v4 via Alpine's `$wire.entangle()`.
+The select component uses Alpine v3 and supports Livewire v4 using `$wire.get()`, `$wire.set()`, and `$wire.$watch()` for two-way syncing.
 
 You can bind either with the component `wire` prop or with native `wire:model` attributes:
 
@@ -570,7 +570,7 @@ class ProductSelector extends Component
 - **Keyboard Navigation** - Full keyboard support (Enter, Space, Escape, Tab)
 - **Accessibility** - Proper ARIA attributes and roles
 - **Form Integration** - Hidden input support for traditional form submissions
-- **Livewire Support** - Native entanglement for reactive updates
+- **Livewire Support** - Native reactive syncing with Livewire v4
 - **Transitions** - Smooth open/close animations with Alpine.js
 
 ## CSS Classes
@@ -591,18 +591,18 @@ Ensure your `tailwind.config.js` includes these colors or customize the componen
 
 ### Technical Overview
 
-The select component uses Alpine.js's `$wire.entangle()` to create a reactive two-way binding between the frontend selection and the Livewire backend property.
+The select component uses Alpine.js state and synchronizes it with Livewire via `$wire.get()`, `$wire.set()`, and `$wire.$watch()`.
 
 **Frontend (Alpine.js):**
 ```javascript
 // From select/index.blade.php
-value: $wire.entangle('propertyName')
+value: null
 ```
 
 This means:
-- When a user selects an item, `value` updates automatically
-- The `$wire.entangle()` syncs this value back to the Livewire component
-- If the Livewire property changes server-side, the select updates automatically
+- When a user selects an item, Alpine `value` updates immediately
+- The component syncs that value to Livewire using `$wire.set()`
+- If the Livewire property changes server-side, `$wire.$watch()` updates the select
 
 ### Data Flow
 
@@ -611,7 +611,7 @@ User clicks item
        ↓
 Alpine value updates
        ↓
-$wire.entangle() syncs to Livewire
+$wire.set() syncs to Livewire
        ↓
 Livewire property updated
        ↓

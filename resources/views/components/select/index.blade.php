@@ -30,11 +30,26 @@
     x-data="{
         open: false,
         selectId: @js($selectId),
+        wireModel: @js($wireModel),
         isDisabled: @js((bool) $disabled),
-        value: @if($wireModel)$wire.entangle(@js($wireModel)).live @else @js($value)@endif,
+        value: @js($value),
         selectedLabel: null,
         normalizeValue(value) {
             return value === null || value === undefined ? '' : String(value);
+        },
+        syncValueFromWire() {
+            if (!this.wireModel) return;
+            this.value = $wire.get(this.wireModel);
+        },
+        syncValueToWire(value) {
+            if (!this.wireModel) return;
+            const currentWireValue = $wire.get(this.wireModel);
+
+            if (this.normalizeValue(currentWireValue) === this.normalizeValue(value)) {
+                return;
+            }
+
+            $wire.set(this.wireModel, value);
         },
         updateSelectedLabel() {
             if (this.value === null || this.value === undefined || this.value === '') {
@@ -54,7 +69,21 @@
         }
     }"
     x-init="
-        $watch('value', () => { $nextTick(() => updateSelectedLabel()); });
+        if (wireModel) {
+            syncValueFromWire();
+            $wire.$watch(wireModel, (newValue) => {
+                value = newValue;
+                $nextTick(() => updateSelectedLabel());
+            });
+        }
+
+        $watch('value', (newValue) => {
+            if (wireModel) {
+                syncValueToWire(newValue);
+            }
+            $nextTick(() => updateSelectedLabel());
+        });
+
         $nextTick(() => updateSelectedLabel());
     "
     x-on:keydown.escape.window="open = false"
