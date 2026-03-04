@@ -19,11 +19,12 @@ $sizeClasses = match ($size) {
     type="button"
     role="combobox"
     x-ref="trigger"
-    x-on:click="open = !open"
+    x-on:click="if (!isDisabled) open = !open"
     x-bind:aria-expanded="open"
-    aria-controls=""
+    x-bind:aria-controls="`${selectId}-content`"
+    aria-haspopup="listbox"
     x-bind:data-state="open ? 'open' : 'closed'"
-    x-bind:disabled="$el.closest('[data-select-id]')?.querySelector('[disabled]') !== null"
+    x-bind:disabled="isDisabled"
     {{ $attributes->merge([
         'class' => 'flex w-full items-center justify-between rounded-md border border-input dark:border-gray-700 bg-transparent '. $sizeClasses .' shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap [&>span]:line-clamp-1 ' . ($class ?? ''),
     ]) }}

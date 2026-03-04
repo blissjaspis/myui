@@ -62,7 +62,7 @@ Composable select components that follow shadcn/ui design patterns.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `wire` | string | `null` | Livewire property for entanglement |
+| `wire` | string | `null` | Livewire property for entanglement (Livewire v4 compatible) |
 | `name` | string | `null` | Form input name (creates hidden input) |
 | `value` | string | `null` | Initial selected value |
 | `disabled` | boolean | `false` | Disable the entire select |
@@ -161,7 +161,20 @@ Composable select components that follow shadcn/ui design patterns.
 </x-myui::select.trigger>
 ```
 
-#### Livewire Integration
+#### Livewire Integration (Livewire v4)
+
+The select component uses Alpine v3 and supports Livewire v4 via Alpine's `$wire.entangle()`.
+
+You can bind either with the component `wire` prop or with native `wire:model` attributes:
+
+```blade
+<x-myui::select wire="selectedUser">...</x-myui::select>
+<x-myui::select wire:model.live="selectedUser">...</x-myui::select>
+```
+
+The selected value automatically syncs with your Livewire component's public property.
+
+**Frontend (Blade View):**
 
 ```blade
 <x-myui::select wire="selectedUser">
@@ -174,6 +187,175 @@ Composable select components that follow shadcn/ui design patterns.
         @endforeach
     </x-myui::select.content>
 </x-myui::select>
+```
+
+**Backend (Livewire Component):**
+
+```php
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\User;
+
+class UserForm extends Component
+{
+    public $selectedUser = null;  // Bound to the select component
+    public $users = [];           // Options to populate the dropdown
+
+    public function mount()
+    {
+        $this->users = User::all()
+            ->map(fn($user) => [
+                'id' => $user->id,
+                'name' => $user->name
+            ])
+            ->toArray();
+    }
+
+    public function save()
+    {
+        // $this->selectedUser contains the selected value
+        User::find($this->selectedUser)->update([...]);
+    }
+
+    public function render()
+    {
+        return view('livewire.user-form');
+    }
+}
+```
+
+**Cascading/Dependent Selects:**
+
+When you need selects that depend on each other (e.g., Country → State → City):
+
+```blade
+<!-- Country Selection -->
+<x-myui::select wire="selectedCountry">
+    <x-myui::select.trigger>
+        <x-myui::select.value placeholder="Select country" />
+    </x-myui::select.trigger>
+    <x-myui::select.content>
+        @foreach($countries as $country)
+            <x-myui::select.item :value="$country['id']">{{ $country['name'] }}</x-myui::select.item>
+        @endforeach
+    </x-myui::select.content>
+</x-myui::select>
+
+<!-- State Selection (dependent on country) -->
+<x-myui::select wire="selectedState">
+    <x-myui::select.trigger>
+        <x-myui::select.value placeholder="Select state" />
+    </x-myui::select.trigger>
+    <x-myui::select.content>
+        @foreach($states as $state)
+            <x-myui::select.item :value="$state['id']">{{ $state['name'] }}</x-myui::select.item>
+        @endforeach
+    </x-myui::select.content>
+</x-myui::select>
+```
+
+```php
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\Country;
+use App\Models\State;
+
+class LocationForm extends Component
+{
+    public $selectedCountry = null;
+    public $selectedState = null;
+    public $countries = [];
+    public $states = [];
+
+    public function mount()
+    {
+        $this->countries = Country::all(['id', 'name'])->toArray();
+    }
+
+    // Automatically called when selectedCountry changes
+    public function updatedSelectedCountry($value)
+    {
+        $this->selectedState = null; // Reset state when country changes
+        $this->states = State::where('country_id', $value)
+            ->get(['id', 'name'])
+            ->toArray();
+    }
+
+    public function render()
+    {
+        return view('livewire.location-form');
+    }
+}
+```
+
+**With Validation:**
+
+```blade
+<div>
+    <x-myui::select wire="selectedRole">
+        <x-myui::select.trigger>
+            <x-myui::select.value placeholder="Select a role" />
+        </x-myui::select.trigger>
+        <x-myui::select.content>
+            <x-myui::select.item value="admin">Administrator</x-myui::select.item>
+            <x-myui::select.item value="editor">Editor</x-myui::select.item>
+            <x-myui::select.item value="viewer">Viewer</x-myui::select.item>
+        </x-myui::select.content>
+    </x-myui::select>
+
+    @error('selectedRole')
+        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+    @enderror
+</div>
+```
+
+```php
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+
+class RoleForm extends Component
+{
+    public $selectedRole = null;
+
+    protected $rules = [
+        'selectedRole' => 'required|in:admin,editor,viewer',
+    ];
+
+    protected $messages = [
+        'selectedRole.required' => 'Please select a role.',
+    ];
+
+    public function save()
+    {
+        $this->validate();
+
+        // Proceed with saving
+    }
+
+    public function render()
+    {
+        return view('livewire.role-form');
+    }
+}
+```
+
+**Pre-selecting a Value:**
+
+```php
+public function mount($userId)
+{
+    $user = User::find($userId);
+    $this->selectedUser = $user->role_id; // Pre-select the user's current role
+}
 ```
 
 #### Custom Dropdown Width
@@ -237,18 +419,147 @@ $users = [
 
 ### Livewire Integration
 
-The basic select component listens for `updateOptions` events to dynamically update options.
+The basic select component uses the same `wire` prop for two-way binding, but also supports dynamic option updates via events.
 
-**Dispatching from Livewire:**
+**Basic Binding:**
+
+```blade
+<x-myui::select.basic
+    wire="selectedUser"
+    label="Choose User"
+    :options="$users"
+    placeholder="Select a user..."
+/>
+```
 
 ```php
-$this->dispatch('updateOptions', [
-    [
-        'target' => 'modelName',
-        'options' => $newOptions,
-        'reset' => ['otherModelName']
-    ]
-]);
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\User;
+
+class UserDropdown extends Component
+{
+    public $selectedUser = null;
+    public $users = [];
+
+    public function mount()
+    {
+        $this->loadUsers();
+    }
+
+    public function loadUsers($search = '')
+    {
+        $query = User::query();
+
+        if ($search) {
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        // Format must have 'label' and 'value' keys
+        $this->users = $query->get()
+            ->map(fn($user) => [
+                'label' => $user->name,
+                'value' => $user->id
+            ])
+            ->toArray();
+    }
+
+    public function render()
+    {
+        return view('livewire.user-dropdown');
+    }
+}
+```
+
+**Dynamic Option Updates:**
+
+The basic select listens for `updateOptions` events to refresh its options without reloading the page.
+
+```php
+// In your Livewire component
+public function updatedSearchQuery($value)
+{
+    // Filter users based on search
+    $filteredUsers = User::where('name', 'like', "%{$value}%")
+        ->get()
+        ->map(fn($user) => [
+            'label' => $user->name,
+            'value' => $user->id
+        ])
+        ->toArray();
+
+    // Dispatch event to update the select options
+    $this->dispatch('updateOptions', [
+        [
+            'target' => 'selectedUser',     // The wire property to update
+            'options' => $filteredUsers,      // New options array
+            'reset' => []                     // Optional: other properties to reset
+        ]
+    ]);
+}
+
+// Reset with cascading effect
+public function clearSelection()
+{
+    $this->dispatch('updateOptions', [
+        [
+            'target' => 'selectedUser',
+            'options' => [],
+            'reset' => ['selectedDepartment', 'selectedTeam']  // Reset related fields
+        ]
+    ]);
+}
+```
+
+**With Search Enabled:**
+
+```blade
+<x-myui::select.basic
+    wire="selectedProduct"
+    label="Product"
+    :options="$products"
+    placeholder="Search products..."
+    show-search
+    show-clear-icon
+/>
+```
+
+```php
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\Product;
+
+class ProductSelector extends Component
+{
+    public $selectedProduct = null;
+    public $products = [];
+
+    public function mount()
+    {
+        $this->products = Product::all()
+            ->map(fn($p) => ['label' => $p->name, 'value' => $p->id])
+            ->toArray();
+    }
+
+    // Called when selection changes
+    public function updatedSelectedProduct($value)
+    {
+        $product = Product::find($value);
+        // Do something with selected product
+        $this->dispatch('productSelected', $product->toArray());
+    }
+
+    public function render()
+    {
+        return view('livewire.product-selector');
+    }
+}
 ```
 
 ---
@@ -273,3 +584,57 @@ Components use standard Tailwind CSS with these custom properties:
 - `text-muted-foreground` - Placeholder text
 
 Ensure your `tailwind.config.js` includes these colors or customize the component templates.
+
+---
+
+## How Livewire Integration Works
+
+### Technical Overview
+
+The select component uses Alpine.js's `$wire.entangle()` to create a reactive two-way binding between the frontend selection and the Livewire backend property.
+
+**Frontend (Alpine.js):**
+```javascript
+// From select/index.blade.php
+value: $wire.entangle('propertyName')
+```
+
+This means:
+- When a user selects an item, `value` updates automatically
+- The `$wire.entangle()` syncs this value back to the Livewire component
+- If the Livewire property changes server-side, the select updates automatically
+
+### Data Flow
+
+```
+User clicks item
+       ↓
+Alpine value updates
+       ↓
+$wire.entangle() syncs to Livewire
+       ↓
+Livewire property updated
+       ↓
+Server processes (validation, etc.)
+       ↓
+Livewire re-renders if needed
+       ↓
+Select reflects new state
+```
+
+### Option Value Types
+
+The `value` prop on `select.item` accepts:
+- **Strings**: `value="active"`
+- **Numbers**: `:value="1"` (use colon prefix for integers)
+- **Booleans**: `:value="true"`
+
+### Common Pitfalls
+
+1. **Using both `wire` and `wire:model` at the same time**: Use one binding style consistently. If both are provided, prefer the `wire` prop for clarity.
+
+2. **Integer values as strings**: If your Livewire property expects an integer, use `:value="$user->id"` (with colon) instead of `value="{{ $user->id }}"` to pass the actual integer.
+
+3. **Initial value mismatch**: If pre-selecting values, ensure the type matches (string vs integer).
+
+4. **Missing Alpine plugins**: Both `@alpinejs/anchor` and `@alpinejs/focus` are required for proper functionality.

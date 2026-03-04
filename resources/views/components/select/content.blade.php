@@ -8,7 +8,6 @@
     'align' => 'center', // 'start' | 'center' | 'end'
     'side' => 'bottom', // 'top' | 'bottom'
     'sideOffset' => 4,
-    'teleport' => 'body', // Where to teleport the content
     'matchTriggerWidth' => true, // Match the width of the trigger button
     'class' => null,
 ])
@@ -53,30 +52,29 @@ $defaultClasses = $matchTriggerWidth
     : 'z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border shadow-md bg-popover dark:bg-gray-800 text-popover-foreground dark:text-gray-200';
 @endphp
 
-<template x-teleport="{{ $teleport }}">
-    <div
-        x-show="open"
-        x-transition:enter="transition ease-out duration-150"
-        x-transition:enter-start="opacity-0 translate-y-1 scale-95"
-        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-        x-transition:leave="transition ease-in duration-100"
-        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-        x-transition:leave-end="opacity-0 translate-y-1 scale-95"
-        x-cloak
-        role="listbox"
-        x-ref="content"
-        x-trap="open"
-        @click.outside="open = false"
-        @keydown.escape.window="open = false"
-        {!! $anchorDirective !!}
-        x-bind:data-state="open ? 'open' : 'closed'"
-        x-bind:style="{{ $matchTriggerWidth ? '$refs.trigger ? { width: $refs.trigger.offsetWidth + \'px\' } : {}' : '{}' }}"
-        class="{{ $defaultClasses }} {{ $class ?? '' }}"
-        {{ $attributes }}
-        style="display: none;"
-    >
-        <div class="w-full {{ $position === 'item-aligned' ? '' : 'p-1' }}">
-            {{ $slot }}
-        </div>
+<div
+    x-show="open"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0 translate-y-1 scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+    x-transition:leave-end="opacity-0 translate-y-1 scale-95"
+    x-cloak
+    role="listbox"
+    x-bind:id="`${selectId}-content`"
+    x-ref="content"
+    x-trap="open"
+    @click.outside="open = false"
+    @keydown.escape.window="open = false"
+    {!! $anchorDirective !!}
+    x-bind:data-state="open ? 'open' : 'closed'"
+    x-bind:style="{{ $matchTriggerWidth ? '$refs.trigger ? { width: $refs.trigger.offsetWidth + \'px\' } : {}' : '{}' }}"
+    class="{{ $defaultClasses }} {{ $class ?? '' }}"
+    {{ $attributes }}
+    style="display: none;"
+>
+    <div class="w-full {{ $position === 'item-aligned' ? '' : 'p-1' }}">
+        {{ $slot }}
     </div>
-</template>
+</div>
