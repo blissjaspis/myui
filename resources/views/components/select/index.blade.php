@@ -34,12 +34,23 @@
         isDisabled: @js((bool) $disabled),
         value: @js($value),
         selectedLabel: null,
+        isSyncingFromWire: false,
         normalizeValue(value) {
             return value === null || value === undefined ? '' : String(value);
         },
         syncValueFromWire() {
             if (!this.wireModel) return;
-            this.value = $wire.get(this.wireModel);
+            const wireValue = $wire.get(this.wireModel);
+
+            if (this.normalizeValue(wireValue) === this.normalizeValue(this.value)) {
+                return;
+            }
+
+            this.isSyncingFromWire = true;
+            this.value = wireValue;
+            this.$nextTick(() => {
+                this.isSyncingFromWire = false;
+            });
         },
         syncValueToWire(value) {
             if (!this.wireModel) return;
@@ -72,13 +83,19 @@
         if (wireModel) {
             syncValueFromWire();
             $wire.$watch(wireModel, (newValue) => {
+                if (normalizeValue(newValue) === normalizeValue(value)) {
+                    return;
+                }
+
+                isSyncingFromWire = true;
                 value = newValue;
                 $nextTick(() => updateSelectedLabel());
+                $nextTick(() => { isSyncingFromWire = false; });
             });
         }
 
         $watch('value', (newValue) => {
-            if (wireModel) {
+            if (wireModel && !isSyncingFromWire) {
                 syncValueToWire(newValue);
             }
             $nextTick(() => updateSelectedLabel());
@@ -89,7 +106,9 @@
     x-on:keydown.escape.window="open = false"
     x-on:select-item.window="
         if ($event.detail.selectId === selectId) {
-            value = $event.detail.value;
+            if (normalizeValue(value) !== normalizeValue($event.detail.value)) {
+                value = $event.detail.value;
+            }
             updateSelectedLabel();
         }
     "
