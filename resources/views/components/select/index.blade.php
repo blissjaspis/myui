@@ -61,7 +61,6 @@
     x-on:select-item.window="
         if ($event.detail.selectId === selectId) {
             value = $event.detail.value;
-            open = false;
             updateSelectedLabel();
         }
     "
